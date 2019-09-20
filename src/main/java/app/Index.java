@@ -1,0 +1,20 @@
+package app;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class Index {
+  @GetMapping
+  public String list() {
+    System.out.println("index");
+    return "/index";
+  }
+
+  public void name() {
+    System.out.println("21212");
+  }
+
+}
