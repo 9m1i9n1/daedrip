@@ -1,11 +1,11 @@
-package app.account.model;
+package app.account.vo;
 
 import java.sql.Date;
 
 import lombok.Data;
 
 @Data
-public class Account {
+public class AccountVO {
   private int idx;
   private String userid;
   private String pw;
