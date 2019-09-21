@@ -1,7 +1,11 @@
 package app.bbs.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import app.bbs.service.BbsService;
 import app.bbs.vo.BbsVO;
@@ -42,13 +48,29 @@ public class BbsController {
   }
 
   @PostMapping("/writeProc")
-  private String writeProc(HttpServletRequest request) throws Exception {
+  private String writeProc(HttpServletRequest request, @RequestPart MultipartFile files) throws Exception {
 
     BbsVO bbs = new BbsVO();
 
     bbs.setTitle(request.getParameter("title"));
     bbs.setAccount_idx(Integer.parseInt(request.getParameter("account_idx")));
     bbs.setContent(request.getParameter("content"));
+
+    String sourceFileName = files.getOriginalFilename();
+    String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
+
+    File destinationFile;
+    String destinationFileName;
+    String fileUrl = "../../../../webapp/WEB-INF/upload/";
+
+    do {
+      destinationFileName = RandomStringUtils.randomAlphabetic(32) + "." + sourceFileNameExtension;
+      destinationFile = new File(fileUrl + destinationFileName);
+    } while (destinationFile.exists());
+
+    destinationFile.getParentFile().mkdirs();
+    files.transferTo(destinationFile);
+
     bbsService.writeService(bbs);
 
     return "redirect:/bbs/index";
