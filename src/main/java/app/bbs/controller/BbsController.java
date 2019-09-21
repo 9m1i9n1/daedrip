@@ -1,11 +1,11 @@
 package app.bbs.controller;
 
-import java.util.List;
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,42 +22,59 @@ public class BbsController {
   BbsService bbsService;
 
   @GetMapping({ "", "/", "{pageNum}" })
-  public String list(@PathVariable int pageNum, Model model) {
-    return "/bbs/list";
+  private String list(Model model) throws Exception {
+
+    model.addAttribute("list", bbsService.listService());
+    return "/bbs/index";
   }
 
-  @GetMapping("/read/{index}")
-  public String read(@PathVariable int index, Model model) {
-    BbsVO bbsVo = bbsService.read(index);
-    System.out.println(bbsVo.getContent());
+  @GetMapping("/read/{idx}")
+  private String read(@PathVariable int idx, Model model) throws Exception {
+
+    model.addAttribute("read", bbsService.readService(idx));
     return "/bbs/read";
   }
 
-  @GetMapping("/create")
-  public String create() {
-    return "/bbs/create";
+  @GetMapping("/write")
+  private String write() {
+
+    return "/bbs/write";
   }
 
-  @GetMapping("/update/{index}")
-  public String update(@PathVariable int index, Model model) {
+  @PostMapping("/writeProc")
+  private String writeProc(HttpServletRequest request) throws Exception {
+
+    BbsVO bbs = new BbsVO();
+
+    bbs.setTitle(request.getParameter("title"));
+    bbs.setAccount_idx(Integer.parseInt(request.getParameter("account_idx")));
+    bbs.setContent(request.getParameter("content"));
+    bbsService.writeService(bbs);
+
+    return "redirect:/bbs/index";
+  }
+
+  @PostMapping("/update/{idx}")
+  private String update(@PathVariable int idx, Model model) throws Exception {
+
+    model.addAttribute("read", bbsService.readService(idx));
+
     return "/bbs/update";
   }
 
-  // #region excute
-  @PostMapping("/create")
-  public String createExcute(BbsVO bbs) {
-    return "redirect:/bbs/read/"; // + index;
+  @PostMapping("/updateProc")
+  private int updateProc(HttpServletRequest request) throws Exception {
+
+    BbsVO bbs = (BbsVO) request.getParameterMap();
+
+    return bbsService.updateService(bbs);
   }
 
-  @PostMapping("/update/{index}")
-  public String updateExcute(@PathVariable int index, BbsVO bbs) {
-    return "redirect:/bbs/read/" + index;
-  }
+  @DeleteMapping("/delete/{idx}")
+  private String delete(@PathVariable int idx) throws Exception {
 
-  @PostMapping("/delete/{index}")
-  public String deleteExcute(@PathVariable int index) {
-    return "redirect:/bbs/";
-  }
-  // #endregion excute
+    bbsService.deleteService(idx);
 
+    return "bbs/";
+  }
 }

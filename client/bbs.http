@@ -14,9 +14,9 @@ GET http://localhost:18080/bbs/1 HTTP/1.1
 ###
 GET http://localhost:18080/bbs/read/1 HTTP/1.1
 
-# create
+# write
 ###
-GET http://localhost:18080/bbs/create HTTP/1.1
+GET http://localhost:18080/bbs/write HTTP/1.1
 
 # update
 ###
@@ -24,9 +24,9 @@ GET http://localhost:18080/bbs/update/1 HTTP/1.1
 
 ############## excute ###############
 
-# create
+# write
 ###
-POST http://localhost:18080/bbs/create HTTP/1.1
+POST http://localhost:18080/bbs/write HTTP/1.1
 
 account_idx=1&title=1&content=1
 

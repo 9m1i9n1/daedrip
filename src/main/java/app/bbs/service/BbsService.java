@@ -1,5 +1,7 @@
 package app.bbs.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,24 @@ public class BbsService {
   @Autowired
   BbsMapper bbsMapper;
 
-  public BbsVO read(int idx) {
+  public List<BbsVO> listService() throws Exception {
+    return bbsMapper.list();
+  }
+
+  public BbsVO readService(int idx) throws Exception {
     return bbsMapper.read(idx);
   }
+
+  public int writeService(BbsVO bbs) throws Exception {
+    return bbsMapper.write(bbs);
+  }
+
+  public int updateService(BbsVO bbs) throws Exception {
+    return bbsMapper.update(bbs);
+  }
+
+  public int deleteService(int idx) throws Exception {
+    return bbsMapper.delete(idx);
+  }
+
 }
