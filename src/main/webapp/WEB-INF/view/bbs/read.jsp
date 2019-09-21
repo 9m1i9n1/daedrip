@@ -32,5 +32,9 @@
       </form>
     </div>
 
+    <button onclick="location.href='/bbs/update/${read.idx}'">수정</button>
+
+    <button onclick="location.href='/bbs/delete/${read.idx}'">삭제</button>
+
   </body>
 </html>

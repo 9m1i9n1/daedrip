@@ -54,7 +54,7 @@ public class BbsController {
     return "redirect:/bbs/index";
   }
 
-  @PostMapping("/update/{idx}")
+  @GetMapping("/update/{idx}")
   private String update(@PathVariable int idx, Model model) throws Exception {
 
     model.addAttribute("read", bbsService.readService(idx));
@@ -63,11 +63,16 @@ public class BbsController {
   }
 
   @PostMapping("/updateProc")
-  private int updateProc(HttpServletRequest request) throws Exception {
+  private String updateProc(HttpServletRequest request) throws Exception {
 
-    BbsVO bbs = (BbsVO) request.getParameterMap();
+    BbsVO bbs = new BbsVO();
+    bbs.setTitle(request.getParameter("title"));
+    bbs.setContent(request.getParameter("content"));
+    bbs.setIdx(Integer.parseInt(request.getParameter("idx")));
 
-    return bbsService.updateService(bbs);
+    bbsService.updateService(bbs);
+
+    return "redirect:/bbs/read/" + request.getParameter("idx");
   }
 
   @DeleteMapping("/delete/{idx}")
