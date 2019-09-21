@@ -1,6 +1,7 @@
-select
-  *
-from
-  bbs
-where
-  account_idx = 9191
+SELECT
+      *
+    FROM bbs
+    ORDER BY 
+      idx
+    DESC
+    LIMIT 0, 10
