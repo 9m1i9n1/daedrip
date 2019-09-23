@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import app.bbs.service.BbsService;
 import app.bbs.vo.BbsVO;
 import app.bbs.vo.FileVO;
+import app.bbs.vo.PageMakeVO;
+import app.bbs.vo.PageVO;
 
 @Controller
 @RequestMapping("/bbs")
@@ -38,9 +42,18 @@ public class BbsController {
   String uploadFileDir;
 
   @GetMapping({ "", "/", "{pageNum}" })
-  private String list(Model model) throws Exception {
+  // 커맨드 객체로 pageVO 를 매개변수로 넣어줘, 넘어오는 page와 perPageNum정보를 받음
+  private String listPage(PageVO pageVO, Model model) throws Exception {
 
-    model.addAttribute("list", bbsService.listService());
+    PageMakeVO pageMakeVO = new PageMakeVO();
+    pageMakeVO.setPageVO(pageVO);
+
+    int totalCount = bbsService.countService();
+    pageMakeVO.setTotalCount(totalCount);
+
+    model.addAttribute("pageMakeVO", pageMakeVO);
+    model.addAttribute("list", bbsService.listPageService(pageVO));
+
     return "/bbs/index";
   }
 

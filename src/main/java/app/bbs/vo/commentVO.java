@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class commentVO {
+public class CommentVO {
   private int idx;
   private int bbs_idx;
   private int account_idx;

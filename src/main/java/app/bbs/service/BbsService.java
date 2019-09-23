@@ -8,12 +8,21 @@ import org.springframework.stereotype.Service;
 import app.bbs.mapper.BbsMapper;
 import app.bbs.vo.BbsVO;
 import app.bbs.vo.FileVO;
+import app.bbs.vo.PageVO;
 
 @Service
 public class BbsService {
 
   @Autowired
   BbsMapper bbsMapper;
+
+  public int countService() throws Exception {
+    return bbsMapper.count();
+  }
+
+  public List<BbsVO> listPageService(PageVO pageVO) throws Exception {
+    return bbsMapper.listPage(pageVO);
+  }
 
   public List<BbsVO> listService() throws Exception {
     return bbsMapper.list();
