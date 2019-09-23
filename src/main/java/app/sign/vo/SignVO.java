@@ -1,0 +1,10 @@
+package app.sign.vo;
+
+import lombok.Data;
+
+@Data
+public class SignVO {
+  private String id;
+  private String nickname;
+  private String email;
+}
