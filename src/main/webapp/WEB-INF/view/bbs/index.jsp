@@ -30,9 +30,13 @@
           </tr>
 
           <c:forEach var="p" items="${list}">
-            <tr onclick="location.href='/bbs/read/${p.idx}'">
+            <tr>
               <td>${p.idx}</td>
-              <td>${p.title}</td>
+              <td>
+                <a href="/bbs/read/${p.idx}">
+                  ${p.title}
+                </a>
+              </td>
               <td>${p.account_idx}</td>
               <td>${p.content}</td>
               <td>${p.readCount}</td>
