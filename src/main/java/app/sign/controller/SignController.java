@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import app.account.service.AccountService;
+import app.account.vo.AccountVO;
 import app.sign.service.SignService;
 import app.sign.vo.SignVO;
 
@@ -19,6 +21,9 @@ public class SignController {
 
   @Autowired
   SignService signService;
+
+  @Autowired
+  AccountService accountService;
 
   @GetMapping("/in")
   public String in() {
@@ -33,24 +38,23 @@ public class SignController {
   @GetMapping("/out")
   public String out(HttpSession session) {
     session.invalidate();
-    return "/index";
+    return "redirect:/";
   }
 
   @PostMapping("/in")
-  public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw, HttpSession session,
-      Model model) {
+  public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
+      @RequestParam("check") String check, HttpSession session, Model model) {
     SignVO signVO = signService.in(userId, pw);
     if (signVO != null) {
-      session.setAttribute("sign", signVO);
-      return "/index";
-    } else {
-      model.addAttribute("signInfo", "false");
-      return "redirect:/sign/in";
+      session.setAttribute("signVO", signVO);
     }
+    return "redirect:/";
   }
 
   @PostMapping("/up")
-  public String upExcute() {
+  public String upExcute(AccountVO accountVO) {
+
+    accountService.create(accountVO);
     return "/index";
   }
 }

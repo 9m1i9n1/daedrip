@@ -15,7 +15,7 @@ public interface AccountMapper {
 
   public AccountVO read(int idx);
 
-  public int write(AccountVO accountVO);
+  public int create(AccountVO accountVO);
 
   public int update(AccountVO accountVO);
 

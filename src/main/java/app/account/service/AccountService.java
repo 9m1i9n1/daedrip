@@ -21,8 +21,8 @@ public class AccountService {
     return AccountMapper.read(idx);
   }
 
-  public int write(AccountVO account) {
-    return AccountMapper.write(account);
+  public int create(AccountVO account) {
+    return AccountMapper.create(account);
   }
 
   public int update(AccountVO account) {
