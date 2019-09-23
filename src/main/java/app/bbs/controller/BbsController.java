@@ -117,15 +117,16 @@ public class BbsController {
     return "redirect:/bbs/read/" + request.getParameter("idx");
   }
 
-  @DeleteMapping("/delete/{idx}")
+  // TODO:: 이 부분 GET 말고 다른 방향 있는지 확인.
+  @GetMapping("/delete/{idx}")
   private String delete(@PathVariable int idx) throws Exception {
 
     bbsService.deleteService(idx);
 
-    return "bbs/";
+    return "redirect:/bbs/index";
   }
 
-  @RequestMapping("/fileDown/{bbs_idx}")
+  @GetMapping("/fileDown/{bbs_idx}")
   private void fileDown(@PathVariable int bbs_idx, HttpServletRequest request, HttpServletResponse response)
       throws Exception {
     request.setCharacterEncoding("UTF-8");
