@@ -1,8 +1,8 @@
-package app.account.mapper;
+package app.sign.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public class AccountMapper {
+public class SignMapper {
 
 }

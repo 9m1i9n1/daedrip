@@ -20,19 +20,10 @@ public class AccountController {
   @Autowired
   AccountService accountService;
 
-  @GetMapping({ "", "/", "{pageNum}" })
-  public String list(@PathVariable Optional<Integer> pageNum, Model model) {
-    return "/account/list";
-  }
 
   @GetMapping("/read/{index}")
   public String read(@PathVariable Optional<Integer> index, Model model) {
     return "/account/read";
-  }
-
-  @GetMapping("/create")
-  public String create() {
-    return "/account/create";
   }
 
   @GetMapping("/update/{index}")
@@ -40,11 +31,6 @@ public class AccountController {
     return "/account/update";
   }
 
-  // #region excute
-  @PostMapping("/create")
-  public String createExcute(AccountVO account) {
-    return "redirect:/account/read/";
-  }
 
   @PostMapping("/update/{index}")
   public String updateExcute(@PathVariable Optional<Integer> index, AccountVO account) {

@@ -5,6 +5,7 @@
   <head>
     <title>BIT 9월 2조 :: 글 목록</title>
   </head>
+  
   <body>
     <div>
       <table>
@@ -31,7 +32,9 @@
           </c:forEach>
       </table>
     </div>
-
+    
+    <%@ include app.sign.vo.SignVO%>
+    <%if((SignVO)session.getAttritube("sign")!=null)%>
     <button onclick="location.href='/bbs/write'>글작성</button>
   </body>
 </html>

@@ -43,7 +43,6 @@ public class BbsController {
 
   @GetMapping("/write")
   private String write() {
-
     return "/bbs/write";
   }
 
@@ -76,11 +75,9 @@ public class BbsController {
     return "redirect:/bbs/index";
   }
 
-  @GetMapping("/update/{idx}")
+  @GetMapping("/{category}/update/{idx}")
   private String update(@PathVariable int idx, Model model) throws Exception {
-
     model.addAttribute("read", bbsService.readService(idx));
-
     return "/bbs/update";
   }
 
@@ -104,4 +101,5 @@ public class BbsController {
 
     return "bbs/";
   }
+
 }
