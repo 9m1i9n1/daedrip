@@ -29,9 +29,13 @@
           </tr>
 
           <c:forEach var="p" items="${list}">
-            <tr onclick="location.href='/bbs/read/${p.idx}'">
+            <tr>
               <td>${p.idx}</td>
-              <td>${p.title}</td>
+              <td>
+                <a href="bbs/read/${p.idx}">
+                  ${p.title}
+                </a>
+              </td>
               <td>${p.account_idx}</td>
               <td>${p.content}</td>
               <td>${p.readCount}</td>
@@ -47,6 +51,29 @@
       
       <button class="btn btn-primary btn-sm" style="float: right;"
         onclick="location.href='/bbs/write'">글쓰기</button>
+
+        <%-- Page 처리 --%>
+      <div>
+        <ul>
+          <c:if test="${pageMakeVO.prev}">
+            <li><a href="${path}?page=${pageMakeVO.startPage - 1}">이전</a></li>
+          </c:if>
+
+          <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+            <li>
+              <%-- 'class=active' 부분에 현재 클릭되어있다는 css 넣어주세요~ 성자이너님~! --%>
+              <%-- <c:out value="${pageMakeVO.pageVO.page == idx ? 'class=active' : ''}" /> --%>
+              <c:out value="${pageMakeVO.pageVO.page == idx ? '' : ''}" />
+              <a href="${path}?page=${idx}">${idx}</a>
+            </li>
+          </c:forEach>
+
+          <c:if test="${pageMakeVO.next && pageMakeVO.endPage > 0}">
+            <li><a href="${path}?page=${pageMakeVO.endPage + 1}">다음</a></li>
+          </c:if>
+        </ul>
+      </div>
+
     </body>
   </html>
 </layoutTag:layout>

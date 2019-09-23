@@ -9,6 +9,16 @@
     FROM bbs
   </select>
 
+  <select id="listPage" resultType="app.bbs.vo.BbsVO">
+      SELECT
+        *
+      FROM bbs
+      ORDER BY 
+        idx
+      DESC
+      LIMIT #{pageStart}, #{perPageNum}
+    </select>
+
   <select id="list" resultType="app.bbs.vo.BbsVO">
     SELECT
       *
