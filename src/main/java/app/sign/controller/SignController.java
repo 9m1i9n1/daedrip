@@ -43,7 +43,7 @@ public class SignController {
 
   @PostMapping("/in")
   public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
-      @RequestParam("check") String check, HttpSession session, Model model) {
+      @RequestParam(value = "check", required = false) String check, HttpSession session, Model model) {
     SignVO signVO = signService.in(userId, pw);
     if (signVO != null) {
       session.setAttribute("signVO", signVO);

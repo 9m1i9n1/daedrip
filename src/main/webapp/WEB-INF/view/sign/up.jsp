@@ -4,94 +4,99 @@
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout />
 
-<div class="col-sm-6 col-md-offset-3">
-  <form id="signup" action="/sign/up">
-    <div class="form-group">
-      <label for="userid">아이디</label>
-      <input type="text" class="form-control" name="userid" placeholder="아이디를 입력해 주세요">
+<form id="signup" class="form-horizontal" action="/sign/up" method="post">
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>아이디</label>
     </div>
-    <div class="form-group">
-      <label for="InputEmail">이메일 주소</label>
-      <input type="email" class="form-control" name="" placeholder="이메일 주소를 입력해주세요">
+    <div class="col-sm-6 text-left">
+      <input type="text" class="form-control" name="userid" value="${accountVO.id}" />
+      <p style="color:red;">${userIdError}</p>
     </div>
-    <div class="form-group">
-      <label for="inputPassword">비밀번호</label>
-      <input type="password" class="form-control" name="" placeholder="비밀번호를 입력해주세요">
-    </div>
-    <div class="form-group">
-      <label for="inputPasswordCheck">비밀번호 확인</label>
-      <input type="password" class="form-control" name="" placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요">
-    </div>
-    <div class="form-group">
-      <label for="inputMobile">휴대폰 번호</label>
-      <input type="tel" class="form-control" name="" placeholder="휴대폰번호를 입력해 주세요">
-    </div>
-    <div class="form-group">
-      <label for="inputtelNO">사무실 번호</label>
-      <input type="tel" class="form-control" name="" placeholder="사무실번호를 입력해 주세요">
-    </div>
+  </div>
 
-    <div class="form-group">
-      <label>약관 동의</label>
-      <div data-toggle="buttons">
-        <label class="btn btn-primary active">
-          <span class="fa fa-check"></span>
-          <input id="agree" type="checkbox" autocomplete="off" checked>
-        </label>
-        <a href="#">이용약관</a>에 동의합니다.
-      </div>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>패스워드</label>
     </div>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" name="pw" />
+      <p style="color:red;">${pwError}</p>
+    </div>
+  </div>
 
-    <div class="form-group text-center">
-      <button type="submit" id="join-submit" class="btn btn-primary">
-        회원가입<i class="fa fa-check spaceLeft"></i>
-      </button>
-      <button type="submit" class="btn btn-warning">
-        가입취소<i class="fa fa-times spaceLeft"></i>
-      </button>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>패스워드 체크</label>
     </div>
-  </form>
-</div>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" name="pwCheck" />
+      <p style="color:red;">${pwCheckError}</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>이름</label>
+    </div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" name="nickName" value="${accountVO.name}" />
+      <p style="color:red;">${nameError}</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>이메일</label>
+    </div>
+    <div class="col-sm-6">
+      <input type="email" class="form-control" name="email" value="${accountVO.email }" />
+      <p style="color:red;">${emailError}</p>
+    </div>
+  </div>
 
 
-<form id="signup" action="/sign/up" method="post">
-  <div>
-    <label for="userid">userid</label>
-    <input type="text" name="userid">
-  </div>
-  <div>
-    <label for="pw">pw</label>
-    <input type="text" name="pw" />
-  </div>
-  <div>
-    <label for="email">email</label>
-    <input type="email" name="email">
-  </div>
-  <div>
-    <label for="nickname">nickname</label>
-    <input type="text" name="nickname" />
-  </div>
-  <div>
-    <div>
-      <label for="zipcode">zipcode</label>
-      <input type="text" name="zipcode" readonly="readonly" />
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>우편번호</label>
     </div>
-    <div>
-      <label for="address">address</label>
-      <input type="text" name="address" readonly="readonly" />
+    <div class="col-sm-3">
+      <input type="text" placeholder="우편번호" name="zipcode" class="form-control" value="${accountVO.zipcode}" />
+      <p style="color:red;">${zipcodeError}</p>
     </div>
-    <div>
-      <label for="extraaddress">extraaddress</label>
-      <input type="text" name="extraaddress" />
-    </div>
-    <div>
-      <button type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
+    <div class="col-sm-3">
+      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary" />
     </div>
   </div>
-  <div>
-    <button>회원가입</button>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>주소</label>
+    </div>
+    <div class="col-sm-6">
+      <input type="text" placeholder="주소" name="address" class="form-control" value="${accountVO.address }" />
+      <p style="color:red;">${addressError}</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label>상세주소</label>
+    </div>
+    <div class="col-sm-6">
+      <input type="text" placeholder="상세주소" name="extraaddress" class="form-control"
+        value="${accountVO.extraAddress}" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12  text-center">
+      <input type="submit" value="회원가입" class="btn btn-success" />
+      <input type="reset" value="취소" class="btn btn-warning" />
+    </div>
   </div>
 </form>
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script language="javascript">
   function execDaumPostcode() {
