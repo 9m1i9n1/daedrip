@@ -19,12 +19,17 @@
 
         <div>
           <label>작성일</label>
-          <p>${read.regdate}</p>
+          <p>${read.regDate}</p>
         </div>
 
         <div>
           <label>내용</label>
           <p>${read.content}</p>
+        </div>
+
+        <div>
+          <label>첨부파일</label>
+          <p><a href="/bbs/fileDown/${file.bbs_idx}">${file.fileOriName}</a></p>
         </div>
 
         <button type="submit">작성</button>

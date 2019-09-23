@@ -20,21 +20,19 @@
         </tr>
 
         <c:forEach var="p" items="${list}">
-              <tr onclick="location.href='bbs/read/${p.idx}'">
+              <tr onclick="location.href='/bbs/read/${p.idx}'">
                   <td>${p.idx}</td>
                   <td>${p.title}</td>
                   <td>${p.account_idx}</td>
                   <td>${p.content}</td>
-                  <td>${p.readcount}</td>
-                  <td>${p.regdate}</td>
-                  <td>${p.modifydate}</td>
+                  <td>${p.readCount}</td>
+                  <td>${p.regDate}</td>
+                  <td>${p.modifyDate}</td>
               </tr>
           </c:forEach>
       </table>
     </div>
     
-    <%@ include app.sign.vo.SignVO%>
-    <%if((SignVO)session.getAttritube("sign")!=null)%>
-    <button onclick="location.href='/bbs/write'>글작성</button>
+    <button onclick="location.href='/bbs/write'">글작성</button>
   </body>
 </html>
