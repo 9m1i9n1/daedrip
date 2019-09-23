@@ -36,7 +36,7 @@ public class SignController {
     return "/index";
   }
 
-  @PostMapping("/in/excute")
+  @PostMapping("/in")
   public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw, HttpSession session,
       Model model) {
     SignVO signVO = signService.in(userId, pw);
@@ -49,7 +49,7 @@ public class SignController {
     }
   }
 
-  @PostMapping("/up/excute")
+  @PostMapping("/up")
   public String upExcute() {
     return "/index";
   }
