@@ -66,6 +66,14 @@
       idx = #{idx}
   </update>
 
+  <update id="updateCount" parameterType="int">
+    UPDATE bbs
+      SET
+      readCount = readCount + 1
+    WHERE
+      idx = #{idx}
+  </update>
+
   <delete id="delete" parameterType="int">
     DELETE 
       FROM bbs

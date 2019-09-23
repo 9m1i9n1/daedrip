@@ -18,6 +18,9 @@ public interface BbsMapper {
   // 게시글 읽기
   public BbsVO read(int idx) throws Exception;
 
+  // 조회수 증가
+  public int updateCount(int idx) throws Exception;
+
   // 게시글 작성
   public int write(BbsVO board) throws Exception;
 

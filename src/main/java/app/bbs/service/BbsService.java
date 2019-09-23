@@ -23,6 +23,10 @@ public class BbsService {
     return bbsMapper.read(idx);
   }
 
+  public int updateCountService(int idx) throws Exception {
+    return bbsMapper.updateCount(idx);
+  }
+
   public int writeService(BbsVO bbs) throws Exception {
     return bbsMapper.write(bbs);
   }

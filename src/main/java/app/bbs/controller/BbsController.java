@@ -43,6 +43,7 @@ public class BbsController {
   @GetMapping("/read/{idx}")
   private String read(@PathVariable int idx, Model model) throws Exception {
 
+    bbsService.updateCountService(idx);
     model.addAttribute("read", bbsService.readService(idx));
     model.addAttribute("file", bbsService.downloadService(idx));
 
