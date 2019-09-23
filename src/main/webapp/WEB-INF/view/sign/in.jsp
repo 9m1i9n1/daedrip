@@ -14,3 +14,5 @@
     <button>SignIn</button>
   </div>
 </form>
+
+<jsp:include page="/sign/up" />

@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class FileVO {
-  private int fidx;
   private int idx;
+  private int bbs_idx;
   private String fileName;
   private String fileOriName;
   private String fileUrl;

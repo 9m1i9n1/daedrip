@@ -27,12 +27,28 @@
       idx = #{idx}
   </select>
 
-  <insert id="write" parameterType="app.bbs.vo.BbsVO">
+  <select id="download" parameterType="int" resultType="app.bbs.vo.FileVO">
+    SELECT
+      *
+    FROM file
+    WHERE
+      bbs_idx = #{bbs_idx}
+  </select>
+
+  <insert id="write" parameterType="app.bbs.vo.BbsVO" useGeneratedKeys="true" keyProperty="idx">
     INSERT INTO 
     bbs 
       (idx, account_idx, category, title, content, readcount)
     VALUES 
       (#{idx}, #{account_idx}, "game", #{title}, #{content}, 0);
+  </insert>
+
+  <insert id="upload" parameterType="app.bbs.vo.FileVO">
+    INSERT INTO
+    file
+      (idx, bbs_idx, filename, fileOriName, fileurl)
+    VALUES
+      (#{idx}, #{bbs_idx}, #{fileName}, #{fileOriName}, #{fileUrl})
   </insert>
 
   <update id="update" parameterType="app.bbs.vo.BbsVO">
