@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import app.bbs.mapper.BbsMapper;
 import app.bbs.vo.BbsVO;
+import app.bbs.vo.FileVO;
 
 @Service
 public class BbsService {
@@ -34,4 +35,11 @@ public class BbsService {
     return bbsMapper.delete(idx);
   }
 
+  public int uploadService(FileVO file) throws Exception {
+    return bbsMapper.upload(file);
+  }
+
+  public FileVO downloadService(int bbs_idx) throws Exception {
+    return bbsMapper.download(bbs_idx);
+  }
 }

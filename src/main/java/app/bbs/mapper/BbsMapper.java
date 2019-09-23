@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import app.bbs.vo.BbsVO;
+import app.bbs.vo.FileVO;
 
 @Mapper
 public interface BbsMapper {
@@ -24,5 +25,11 @@ public interface BbsMapper {
   public int update(BbsVO board) throws Exception;
 
   // 게시글 삭제
-  public int delete(int bno) throws Exception;
+  public int delete(int idx) throws Exception;
+
+  // 파일 업로드
+  public int upload(FileVO file) throws Exception;
+
+  // 파일 다운로드
+  public FileVO download(int bbs_idx) throws Exception;
 }

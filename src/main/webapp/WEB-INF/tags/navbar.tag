@@ -9,7 +9,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">귀한 Spring Boot로 맨든 게시판</a>
+			<a class="navbar-brand" href="/bbs">귀한 Spring Boot로 맨든 게시판</a>
 		</div>
 
 		<div class="collapse navbar-collapse"
