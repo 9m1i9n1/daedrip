@@ -20,25 +20,28 @@ public class AccountController {
   @Autowired
   AccountService accountService;
 
-
   @GetMapping("/read/{index}")
-  public String read(@PathVariable Optional<Integer> index, Model model) {
+  public String read(@PathVariable int idx, Model model) {
+    model.addAttribute("read", accountService.read(idx));
     return "/account/read";
   }
 
   @GetMapping("/update/{index}")
-  public String update(@PathVariable Optional<Integer> index, Model model) {
+  public String update(@PathVariable int idx, Model model) {
+    model.addAttribute("read", accountService.read(idx));
+
     return "/account/update";
   }
 
-
   @PostMapping("/update/{index}")
-  public String updateExcute(@PathVariable Optional<Integer> index, AccountVO account) {
-    return "redirect:/account/read/" + index.orElse(0);
+  public String updateExcute(AccountVO accountVO) {
+    accountService.update(accountVO);
+    return "redirect:/account/read/";
   }
 
   @PostMapping("/delete/{index}")
-  public String deleteExcute(@PathVariable Optional<Integer> index) {
-    return "redirect:/account/";
+  public String deleteExcute(@PathVariable int idx) {
+    accountService.delete(idx);
+    return "/";
   }
 }

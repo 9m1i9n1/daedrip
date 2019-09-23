@@ -75,7 +75,7 @@ public class BbsController {
     return "redirect:/bbs/index";
   }
 
-  @GetMapping("/{category}/update/{idx}")
+  @GetMapping("/update/{idx}")
   private String update(@PathVariable int idx, Model model) throws Exception {
     model.addAttribute("read", bbsService.readService(idx));
     return "/bbs/update";
