@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,9 @@ public class BbsController {
 
   @Autowired
   BbsService bbsService;
+
+  @Value("${file.upload.directory}")
+  String uploadFileDir;
 
   @GetMapping({ "", "/", "{pageNum}" })
   private String list(Model model) throws Exception {
@@ -73,11 +77,9 @@ public class BbsController {
 
       File destinationFile;
       String destinationFileName;
-      String fileUrl = "C:/Users/MIN/Documents/BIT/Spring/pilot/src/main/webapp/WEB-INF/upload/";
-
       do {
         destinationFileName = RandomStringUtils.randomAlphabetic(32) + "." + fileNameExtension;
-        destinationFile = new File(fileUrl + destinationFileName);
+        destinationFile = new File(uploadFileDir + destinationFileName);
       } while (destinationFile.exists());
 
       destinationFile.getParentFile().mkdirs();
@@ -89,7 +91,7 @@ public class BbsController {
       file.setBbs_idx(bbs.getIdx());
       file.setFileName(destinationFileName);
       file.setFileOriName(fileName);
-      file.setFileUrl(fileUrl);
+      file.setFileUrl(uploadFileDir);
 
       // file insert
       bbsService.uploadService(file);
