@@ -60,7 +60,8 @@
 
     <if test="title != null and content != null"> , </if>
     <if test="content != null">
-      content = #{content}
+      content = #{content},
+      modifydate = now()
     </if>
     WHERE
       idx = #{idx}
