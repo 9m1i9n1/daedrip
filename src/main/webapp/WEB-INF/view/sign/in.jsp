@@ -3,11 +3,14 @@
 
 <form action="/sign/in" method="post">
   <div>
-    <label for="id">아이디</label>
-    <input type="text" name="id">
+    <label for="userid">아이디</label>
+    <input type="text" name="userid">
   </div>
   <div>
     <label for="pw">패스워드</label>
     <input type="text" name="pw">
+  </div>
+  <div>
+    <button>SignIn</button>
   </div>
 </form>
