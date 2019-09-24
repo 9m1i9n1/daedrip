@@ -85,7 +85,9 @@
 
   <!-- <button class="btn btn-primary btn-sm" style="margin: auto;" onclick="location.href='/bbs/write'">글쓰기</button> -->
   <div align="center">
-    <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    <c:if test="${sessionScope.signVO != null}">
+      <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    </c:if>
   </div>
 
 </body>
