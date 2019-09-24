@@ -53,6 +53,7 @@ public class SignController {
 
   @PostMapping("/up")
   public String upExcute(AccountVO accountVO) {
+    
 
     accountService.create(accountVO);
     return "/index";
