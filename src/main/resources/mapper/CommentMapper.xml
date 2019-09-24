@@ -3,32 +3,32 @@
 
 <mapper namespace="app.bbs.mapper.CommentMapper">
 
-  <select id="commentCount" resultType="int">
+	<select id="commentCount" resultType="int">
 		SELECT
 		COUNT(*)
 		FROM comment
 	</select>
 
-  <select id="commentList" parameterType="int" resultType="app.bbs.vo.CommentVO">
+	<select id="commentList" parameterType="int" resultType="app.bbs.vo.CommentVO">
 
 		SELECT * FROM comment WHERE bbs_idx = #{bbs_idx} ORDER BY idx
 
 	</select>
 
-  <insert id="commentInsert" parameterType="app.bbs.vo.CommentVO">
+	<insert id="commentInsert" parameterType="app.bbs.vo.CommentVO">
 		INSERT INTO
 		comment (idx, bbs_idx, content, account_idx, regdate)
 		VALUES(#{idx},#{bbs_idx},#{content},#{account_idx},now())
 	</insert>
 
-  <update id="commentUpdate" parameterType="app.bbs.vo.CommentVO">
+	<update id="commentUpdate" parameterType="app.bbs.vo.CommentVO">
 		UPDATE comment
 		SET
 		CONTENT = #{content}
 		WHERE idx = #{idx}
 	</update>
 
-  <delete id="commentDelete" parameterType="int">
+	<delete id="commentDelete" parameterType="int">
 		DELETE FROM comment WHERE idx = #{idx}
 	</delete>
 </mapper>
