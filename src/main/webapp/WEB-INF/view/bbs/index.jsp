@@ -47,7 +47,7 @@
         <tr onclick="location.href='/bbs/read/${p.idx}'">
           <td align="center">${p.idx}</td>
           <td>${p.title}</td>
-          <td align="center">${p.account_idx}</td>
+          <td align="center">${p.nickname}</td>
           <!-- <td>${p.content}</td> -->
           <td align="center">${p.readCount}</td>
           <td align="center">
@@ -62,32 +62,42 @@
   </div>
 
   <%-- Page 처리 --%>
-  <div>
-    <ul>
+  <div align="center">
+    <ul class="pagination" style="justify-content: center;">
       <c:if test="${pageMakeVO.prev}">
-        <li><a href="${path}?page=${pageMakeVO.startPage - 1}">이전</a></li>
+        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.startPage - 1}">이전</a></li>
       </c:if>
 
-      <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
-        <li>
-          <%-- 'class=active' 부분에 현재 클릭되어있다는 css 넣어주세요~ 성자이너님~! --%>
-          <%-- <c:out value="${pageMakeVO.pageVO.page == idx ? 'class=active' : ''}" /> --%>
+      <!-- <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+        <li class="page-item">
           <c:out value="${pageMakeVO.pageVO.page == idx ? '' : ''}" />
-          <a href="${path}?page=${idx}">${idx}</a>
+          <a class="page-link" href="${path}?page=${idx}">${idx}</a>
+        </li>
+      </c:forEach> -->
+      <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+        <li class="page-item">
+          <c:out value="${pageMakeVO.pageVO.page == idx ? '' : ''}" />
+          <a class="page-link" href="${path}?page=${idx}">${idx}</a>
         </li>
       </c:forEach>
 
       <c:if test="${pageMakeVO.next && pageMakeVO.endPage > 0}">
-        <li><a href="${path}?page=${pageMakeVO.endPage + 1}">다음</a></li>
+        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.endPage + 1}">다음</a></li>
       </c:if>
     </ul>
   </div>
 
   <!-- <button class="btn btn-primary btn-sm" style="margin: auto;" onclick="location.href='/bbs/write'">글쓰기</button> -->
   <div align="center">
-    <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    <c:if test="${sessionScope.signVO != null}">
+      <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    </c:if>
   </div>
 
+  <form action="/bbs/delete/${}" method="post">
+    <button>버튼</button>
+  </form>
+  
 </body>
 
 </html>

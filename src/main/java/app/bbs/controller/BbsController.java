@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import app.bbs.service.BbsService;
@@ -30,6 +33,7 @@ import app.bbs.vo.BbsVO;
 import app.bbs.vo.FileVO;
 import app.bbs.vo.PageMakeVO;
 import app.bbs.vo.PageVO;
+import app.sign.vo.SignVO;
 
 @Controller
 @RequestMapping("/bbs")
@@ -133,11 +137,14 @@ public class BbsController {
   }
 
   // TODO:: 이 부분 GET 말고 다른 방향 있는지 확인.
-  @GetMapping("/delete/{idx}")
-  private String delete(@PathVariable int idx) throws Exception {
-
-    bbsService.deleteService(idx);
-
+  @PostMapping("/delete/{idx}")
+  private String delete(@PathVariable int idx, @SessionAttribute("signVO") SignVO signVO, HttpServletResponse response)
+      throws Exception {
+    System.out.println("signVO.getNickname() : " + signVO.getNickname());
+    System.out.println("signVO.getIdx() : " + signVO.getIdx());
+    System.out.println("signVO.getUserId() : " + signVO.getUserId());
+    System.out.println("signVO.getEmail() : " + signVO.getEmail());
+    // bbsService.deleteService(idx);
     return "redirect:/bbs/index";
   }
 

@@ -49,6 +49,7 @@
 
 
         </div>
+        <div>
         <c:if test="${sessionScope.signVO == null}">
           <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
             <span>Login</span>
@@ -66,6 +67,7 @@
         <!-- <div style="text-align: right">
           <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary"> <span>Sign</span> </a>
         </div> -->
+        <div>
       </nav>
     </div>
   </div>

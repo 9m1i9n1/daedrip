@@ -26,12 +26,11 @@
 					<a href="/">게시판 3</a>
 				</li>
 				<li>
-					${sessionScope.signVO}
-					<c:if test="${sessionScope.signVO==null}">
+					<c:if test="${sessionScope.signVO == null}">
 						<a href="#myModal" class="trigger-btn" data-toggle="modal">SignIn</a>
 					</c:if>
-					<c:if test="${sessionScope.signVO!=null}">
-						<button>로그 아웃</button>
+					<c:if test="${sessionScope.signVO != null}">
+						<a href="#myModal" class="trigger-btn" data-toggle="modal">SignOut</a>
 					</c:if>
 					<li />
 			</ul>
