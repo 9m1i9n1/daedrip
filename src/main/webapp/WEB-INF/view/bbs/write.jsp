@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <label for = "account_idx">작성자</label>
-          <input class="form-control" type="text" value="${sessionScope.signVO.nickname}" />
+          <input class="form-control" type="text" value="${sessionScope.signVO.nickname}" disabled/>
           <input type="hidden" value="${sessionScope.signVO.idx}" id="account_idx" name="account_idx" />
         </div>
 

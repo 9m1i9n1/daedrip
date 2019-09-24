@@ -138,13 +138,15 @@ public class BbsController {
 
   // TODO:: 이 부분 GET 말고 다른 방향 있는지 확인.
   @PostMapping("/delete/{idx}")
-  private String delete(@PathVariable int idx, @SessionAttribute("signVO") SignVO signVO, HttpServletResponse response)
+  private String delete(@PathVariable int idx, @SessionAttribute("signVO") SignVO signVO, HttpServletRequest request)
       throws Exception {
-    System.out.println("signVO.getNickname() : " + signVO.getNickname());
-    System.out.println("signVO.getIdx() : " + signVO.getIdx());
-    System.out.println("signVO.getUserId() : " + signVO.getUserId());
-    System.out.println("signVO.getEmail() : " + signVO.getEmail());
-    // bbsService.deleteService(idx);
+
+    if ((signVO.getIdx()).equals(request.getParameter("account_idx"))) {
+      System.out.println(signVO.getIdx() + " " + request.getParameter("account_idx"));
+
+      bbsService.deleteService(idx);
+    }
+
     return "redirect:/bbs/index";
   }
 
