@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import app.bbs.service.BbsService;
 import app.bbs.vo.BbsVO;
 import app.bbs.vo.FileVO;
+import app.bbs.vo.PageMakeVO;
+import app.bbs.vo.PageVO;
 
 @Controller
 @RequestMapping("/bbs")
@@ -33,16 +38,29 @@ public class BbsController {
   @Autowired
   BbsService bbsService;
 
-  @GetMapping({ "", "/", "{pageNum}" })
-  private String list(Model model) throws Exception {
+  @Value("${file.upload.directory}")
+  String uploadFileDir;
 
-    model.addAttribute("list", bbsService.listService());
+  @GetMapping({ "", "/", "{pageNum}" })
+  // 커맨드 객체로 pageVO 를 매개변수로 넣어줘, 넘어오는 page와 perPageNum정보를 받음
+  private String listPage(PageVO pageVO, Model model) throws Exception {
+
+    PageMakeVO pageMakeVO = new PageMakeVO();
+    pageMakeVO.setPageVO(pageVO);
+
+    int totalCount = bbsService.countService();
+    pageMakeVO.setTotalCount(totalCount);
+
+    model.addAttribute("pageMakeVO", pageMakeVO);
+    model.addAttribute("list", bbsService.listPageService(pageVO));
+
     return "/bbs/index";
   }
 
   @GetMapping("/read/{idx}")
   private String read(@PathVariable int idx, Model model) throws Exception {
 
+    bbsService.updateCountService(idx);
     model.addAttribute("read", bbsService.readService(idx));
     model.addAttribute("file", bbsService.downloadService(idx));
 
@@ -72,11 +90,9 @@ public class BbsController {
 
       File destinationFile;
       String destinationFileName;
-      String fileUrl = "C:/Users/MIN/Documents/BIT/Spring/pilot/src/main/webapp/WEB-INF/upload/";
-
       do {
         destinationFileName = RandomStringUtils.randomAlphabetic(32) + "." + fileNameExtension;
-        destinationFile = new File(fileUrl + destinationFileName);
+        destinationFile = new File(uploadFileDir + destinationFileName);
       } while (destinationFile.exists());
 
       destinationFile.getParentFile().mkdirs();
@@ -88,7 +104,7 @@ public class BbsController {
       file.setBbs_idx(bbs.getIdx());
       file.setFileName(destinationFileName);
       file.setFileOriName(fileName);
-      file.setFileUrl(fileUrl);
+      file.setFileUrl(uploadFileDir);
 
       // file insert
       bbsService.uploadService(file);

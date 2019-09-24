@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class Index {
-
   @GetMapping
   public String list() {
-    System.out.println("index");
     return "/index";
   }
 }

@@ -1,5 +1,8 @@
 package app.sign.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import app.account.service.AccountService;
+import app.account.vo.AccountVO;
 import app.sign.service.SignService;
 import app.sign.vo.SignVO;
 
@@ -19,6 +24,9 @@ public class SignController {
 
   @Autowired
   SignService signService;
+
+  @Autowired
+  AccountService accountService;
 
   @GetMapping("/in")
   public String in() {
@@ -33,24 +41,28 @@ public class SignController {
   @GetMapping("/out")
   public String out(HttpSession session) {
     session.invalidate();
-    return "/index";
+    return "redirect:/";
   }
 
   @PostMapping("/in")
-  public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw, HttpSession session,
-      Model model) {
+  public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
+      @RequestParam(value = "check", required = false) String check, HttpSession session, Model model) {
     SignVO signVO = signService.in(userId, pw);
     if (signVO != null) {
-      session.setAttribute("sign", signVO);
-      return "/index";
-    } else {
-      model.addAttribute("signInfo", "false");
-      return "redirect:/sign/in";
+      session.setAttribute("signVO", signVO);
     }
+    return "redirect:/";
   }
 
   @PostMapping("/up")
-  public String upExcute() {
-    return "/index";
+  public String upExcute(AccountVO accountVO, HttpServletResponse response) throws Exception {
+    PrintWriter out = response.getWriter();
+    if (accountService.create(accountVO) == 1) {
+      out.println("<script>alert('회원가입이 되었습니다.');</script>");
+    } else {
+      out.println("<script>alert('회원가입에 실패하였습니다.');</script>");
+    }
+
+    return "redirect:/";
   }
 }

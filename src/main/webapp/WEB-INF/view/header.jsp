@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,13 +46,23 @@
             <a href="form.html" class="p-3 text-decoration-none text-white">Form example</a> -->
           </div>
 
+
+
         </div>
-        <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
-          <span>Login</span>
-        </a>
-        <a href="/sign/up" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
-          <span>SignUp</span>
-        </a>
+        <c:if test="${sessionScope.signVO == null}">
+          <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>Login</span>
+          </a>
+          <a href="/sign/up" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>SignUp</span>
+          </a>
+        </c:if>
+        <c:if test="${sessionScope.signVO != null}">
+          <a href="/sign/out" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>Logout</span>
+            <!-- ${sessionScope.signVO.getUserId()} -->
+          </a>
+        </c:if>
         <!-- <div style="text-align: right">
           <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary"> <span>Sign</span> </a>
         </div> -->
