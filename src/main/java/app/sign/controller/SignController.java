@@ -1,5 +1,8 @@
 package app.sign.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +55,14 @@ public class SignController {
   }
 
   @PostMapping("/up")
-  public String upExcute(AccountVO accountVO) {
-    
+  public String upExcute(AccountVO accountVO, HttpServletResponse response) throws Exception {
+    PrintWriter out = response.getWriter();
+    if (accountService.create(accountVO) == 1) {
+      out.println("<script>alert('회원가입이 되었습니다.');</script>");
+    } else {
+      out.println("<script>alert('회원가입에 실패하였습니다.');</script>");
+    }
 
-    accountService.create(accountVO);
-    return "/index";
+    return "redirect:/";
   }
 }

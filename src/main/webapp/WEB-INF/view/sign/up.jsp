@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <div class="col-sm-2 control-label">
       <label>패스워드 체크</label>
     </div>
@@ -33,14 +33,14 @@
       <input type="password" class="form-control" name="pwCheck" />
       <p style="color:red;">${pwCheckError}</p>
     </div>
-  </div>
+  </div> -->
 
   <div class="form-group">
     <div class="col-sm-2 control-label">
-      <label>이름</label>
+      <label>닉네임</label>
     </div>
     <div class="col-sm-6">
-      <input type="text" class="form-control" name="nickName" value="${accountVO.name}" />
+      <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" />
       <p style="color:red;">${nameError}</p>
     </div>
   </div>
