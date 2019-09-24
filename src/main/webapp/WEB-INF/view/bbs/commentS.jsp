@@ -17,7 +17,7 @@ function commentList(){
         type : 'get',
         data : {'bbs_idx':bbs_idx},
         success : function(data){
-            var a =''; 
+            // var a =''; 
 
             $.each(data, function(key, value){ 
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
@@ -29,6 +29,7 @@ function commentList(){
             });
             
             $(".commentList").html(a);
+            // $(".commentList").append(data);
         }
     });
 }
