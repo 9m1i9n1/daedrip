@@ -2,5 +2,5 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 
 <tag:header/>
-<tag:navbar/>
+<%-- <tag:navbar/> --%>
 <jsp:doBody/>
