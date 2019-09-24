@@ -3,7 +3,6 @@
  
 <script>
 var bbs_idx = '${read.idx}'; //게시글 번호
- 
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
     var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
     commentInsert(insertData); //Insert 함수호출(아래)

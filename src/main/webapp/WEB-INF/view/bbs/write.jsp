@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
+
+<c:if test="${sessionScope.signVO == null}">
+  <script>
+    alert('로그인을 해주세요!');
+    history.go(-1);
+  </script>
+</c:if>
+
 <layoutTag:layout>
 
 <!DOCTYPE html">
@@ -23,7 +31,8 @@
 
         <div class="form-group">
           <label for = "account_idx">작성자</label>
-          <input class="form-control" type="text" id="account_idx" name="account_idx" />
+          <input class="form-control" type="text" value="${sessionScope.signVO.nickname}" />
+          <input type="hidden" value="${sessionScope.signVO.idx}" id="account_idx" name="account_idx" />
         </div>
 
         <div class="form-group">

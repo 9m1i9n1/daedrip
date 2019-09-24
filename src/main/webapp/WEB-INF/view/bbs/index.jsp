@@ -47,7 +47,7 @@
         <tr onclick="location.href='/bbs/read/${p.idx}'">
           <td align="center">${p.idx}</td>
           <td>${p.title}</td>
-          <td align="center">${p.account_idx}</td>
+          <td align="center">${p.nickname}</td>
           <!-- <td>${p.content}</td> -->
           <td align="center">${p.readCount}</td>
           <td align="center">
@@ -89,9 +89,15 @@
 
   <!-- <button class="btn btn-primary btn-sm" style="margin: auto;" onclick="location.href='/bbs/write'">글쓰기</button> -->
   <div align="center">
-    <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    <c:if test="${sessionScope.signVO != null}">
+      <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    </c:if>
   </div>
 
+  <form action="/bbs/delete/${}" method="post">
+    <button>버튼</button>
+  </form>
+  
 </body>
 
 </html>

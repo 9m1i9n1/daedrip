@@ -30,7 +30,7 @@
 						<a href="#myModal" class="trigger-btn" data-toggle="modal">SignIn</a>
 					</c:if>
 					<c:if test="${sessionScope.signVO != null}">
-						<button>로그 아웃</button>
+						<a href="#myModal" class="trigger-btn" data-toggle="modal">SignOut</a>
 					</c:if>
 					<li />
 			</ul>
