@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
-<layoutTag:layout>
+<%-- <layoutTag:layout> --%>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
 
 <body>
 
-<%-- <jsp:include page="/WEB-INF/view/header.jsp" /> --%>
+<jsp:include page="/WEB-INF/view/header.jsp" />
 
   <div class="container">
     <div class="col-xs-12" style="margin: 15px auto;">
@@ -55,14 +55,26 @@
       </form>
     </div>
 
-    <div class="btn-group btn-group-sm" role="group" style="float: right;">
-      <button class="btn btn-primary" onclick="location.href='/bbs/update/${read.idx}'">수정</button>
-      <button class="btn btn-danger" onclick="location.href='/bbs/delete/${read.idx}'">삭제</button>
-      <button class="btn btn-primary" onclick="location.href='/bbs'">목록</button>
+    <div  role="group" style="float: right;">
+    <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
+          <span class="fas fa-edit mr-1"></span>
+      Edit</a>
+      
+      
+      <a href="/bbs/delete/${read.idx}" class="btn btn-sm btn-danger my-1 my-sm-0">
+          <span class="fas fa-trash mr-1"></span>
+          Delete</a>
+
+          
+
+          <a href="/bbs" class="btn btn-sm btn-primary my-1 my-sm-0">
+          <span class="fas fa-bars mr-1"></span>
+      List</a>
     </div>
 
   </div>
 
+  <br/>
   <!--  댓글  -->
     <div class="container">
         <label for="content">comment</label>
@@ -85,4 +97,4 @@
 </html>
 <%@ include file="commentS.jsp" %>
 
-</layoutTag:layout>
+<%-- </layoutTag:layout> --%>

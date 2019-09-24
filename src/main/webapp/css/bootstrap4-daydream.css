@@ -3095,6 +3095,7 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+
 .btn-primary {
   color: #fff;
   background-color: #5576c4;
@@ -5888,6 +5889,7 @@ input[type="button"].btn-block {
   list-style: none;
   border-radius: 10px;
 }
+
 
 .page-link {
   position: relative;
