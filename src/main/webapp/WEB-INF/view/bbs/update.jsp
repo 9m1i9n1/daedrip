@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 
-<c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
+<c:if test="${(sessionScope.signVO == null) || (sessionScope.signVO.idx != read.account_idx)}">
   <script>
     alert('작성자만 수정 가능합니다!');
     history.go(-1);
