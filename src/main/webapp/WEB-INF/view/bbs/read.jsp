@@ -11,8 +11,8 @@
   </head>
 
 <body>
-<%-- 
-<jsp:include page="/WEB-INF/view/header.jsp" /> --%>
+
+<%-- <jsp:include page="/WEB-INF/view/header.jsp" /> --%>
 
   <div class="container">
     <div class="col-xs-12" style="margin: 15px auto;">

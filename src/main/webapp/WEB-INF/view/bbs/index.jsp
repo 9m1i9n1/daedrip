@@ -19,7 +19,7 @@
 
 </head>
 
-<body align="center">
+<body align="center" style="margin: auto;">
 
   <jsp:include page="/WEB-INF/view/header.jsp" />
 
@@ -27,40 +27,45 @@
     <div class="col-xs-12" style="margin: 15px auto;">
       <label style="font-size: 20px;"><span class="glyphicon glyphicon-list-alt"></span>게시글 목록</label>
     </div> -->
+  <br />
+  <h1 class="display-3" align="center">Post List</h1>
+  <br />
 
-  <h1 class="display-4" align="center">Post List</h1>
-
-  <div class="col-sm-12">
+  <div class="col-sm-8" style="margin: auto;">
     <table class=" table table-hover table-striped">
-      <tr class=" bg-primary">
+      <tr class=" bg-primary" align="center">
         <th>글 번호</th>
         <th>제목</th>
         <th>작성자</th>
-        <th>내용</th>
+        <!-- <th>내용</th> -->
         <th>조회수</th>
         <th>등록일</th>
-        <th>수정일</th>
+        <!-- <th>수정일</th> -->
       </tr>
 
       <c:forEach var="p" items="${list}">
         <tr onclick="location.href='/bbs/read/${p.idx}'">
-          <td>${p.idx}</td>
+          <td align="center">${p.idx}</td>
           <td>${p.title}</td>
-          <td>${p.account_idx}</td>
-          <td>${p.content}</td>
-          <td>${p.readCount}</td>
-          <td>
+          <td align="center">${p.account_idx}</td>
+          <!-- <td>${p.content}</td> -->
+          <td align="center">${p.readCount}</td>
+          <td align="center">
             <fmt:formatDate value="${p.regDate}" pattern="yyyy.MM.dd HH:mm:ss" />
           </td>
-          <td>
+          <!-- <td>
             <fmt:formatDate value="${p.modifyDate}" pattern="yyyy.MM.dd HH:mm:ss" />
-          </td>
+          </td> -->
         </tr>
       </c:forEach>
     </table>
   </div>
 
-  <button class="btn btn-primary btn-sm" style="float: right;" onclick="location.href='/bbs/write'">글쓰기</button>
+  <!-- <button class="btn btn-primary btn-sm" style="margin: auto;" onclick="location.href='/bbs/write'">글쓰기</button> -->
+  <div align="center">
+    <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+  </div>
+
 </body>
 
 </html>

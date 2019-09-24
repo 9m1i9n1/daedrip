@@ -45,7 +45,14 @@
             <!-- <a href="app.html" class="p-3 text-decoration-none text-white">App example</a>
             <a href="form.html" class="p-3 text-decoration-none text-white">Form example</a> -->
           </div>
+
         </div>
+        <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+          <span>Login</span>
+        </a>
+        <a href="/sign/up" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+          <span>SignUp</span>
+        </a>
         <!-- <div style="text-align: right">
           <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary"> <span>Sign</span> </a>
         </div> -->

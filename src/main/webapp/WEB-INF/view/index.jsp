@@ -14,20 +14,25 @@
 <body>
 
 <jsp:include page="/WEB-INF/view/header.jsp"/>
+
 <div class="jumbotron bg-primary text-center text-white mb-0 radius-0">
   <div class="container">
 
-    <h1 class="display-1 text-white text-handwriting text-uppercase">Programmers never</h1>
-    <h1 class="display-3 text-success text-uppercase title-margin-fix">Daydream</h1>
+    <%-- <h1 class="display-1 text-white text-handwriting text-uppercase">Programmers never</h1>
+    <h1 class="display-3 text-success text-uppercase title-margin-fix">Daydream</h1> --%>
 
-    <div>
+    <h1 class="display-1 text-white text-handwriting text-uppercase">DaeDrip.net</h1>
+    <br/><br/>
+    <h1 class="display-3 text-success text-uppercase title-margin-fix">Welcome</h1>
+
+    <%-- <div>
     
       <a href="/sign/in"
          class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
         <span>Sign</span>
       </a>
 
-    </div>
+    </div> --%>
   </div>
 </div>
 </body>
