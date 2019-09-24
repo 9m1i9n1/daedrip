@@ -28,7 +28,7 @@
           <dd>${read.title}</dd>
 
           <dt>작성자</dt>
-          <dd>${read.account_idx}</dd>
+          <dd>${read.nickname}</dd>
 
           <dt>등록일</dt>
           <dd>

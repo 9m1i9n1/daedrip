@@ -47,7 +47,7 @@
         <tr onclick="location.href='/bbs/read/${p.idx}'">
           <td align="center">${p.idx}</td>
           <td>${p.title}</td>
-          <td align="center">${p.account_idx}</td>
+          <td align="center">${p.nickname}</td>
           <!-- <td>${p.content}</td> -->
           <td align="center">${p.readCount}</td>
           <td align="center">
