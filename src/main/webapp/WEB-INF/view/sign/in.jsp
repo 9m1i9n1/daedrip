@@ -6,7 +6,7 @@
 <layoutTag:layout />
 
 <jsp:include page="/WEB-INF/view/header.jsp" />
-<br/>
+<br />
 <h1 class="display-3" align="center">Login</h1>
 
 <div class="col-md-3 order-md-1" style="margin:40px auto;">
@@ -21,28 +21,28 @@
       </div>
 
       <div class="custom-control custom-checkbox">
-            <ul style="list-style:none; text-align:center; margin: 0 auto;">
-              <li style="float:left;">
-                <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
-                <label class="custom-control-label" for="customCheck1">아이디 기억</label>
-              </li>
-              <li>
-                <a href="/sign/find" >Forgot ID/Password</a>
-              </li>
-            </ul>
+        <ul style="list-style:none; text-align:center; margin: 0 auto;">
+          <li style="float:left;">
+            <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
+            <label class="custom-control-label" for="customCheck1">아이디 기억</label>
+          </li>
+          <li>
+            <a href="/sign/find">Forgot ID/Password?</a>
+          </li>
+        </ul>
       </div>
 
-      <div><h1></h1></div>
+      <br />
 
       <div class="col-sm-12  text-center">
-       <button class="btn btn-primary my-1 my-sm-0">
-         <span class="fas fa-user-check mr-1"></span> Login
-       </button>
-       
-       <button type='button' onclick="location.href='/sign/up'" class="btn btn-danger my-1 my-sm-0">
-         <span class="fas fa-user-plus mr-1"></span> SingUp
+        <button class="btn btn-primary my-1 my-sm-0">
+          <span class="fas fa-user-check mr-1"></span> Login
         </button>
-       </div>
+
+        <button type='button' onclick="location.href='/sign/up'" class="btn btn-danger my-1 my-sm-0">
+          <span class="fas fa-user-plus mr-1"></span> SingUp
+        </button>
+      </div>
       <h1></h1>
 
     </fieldset>
