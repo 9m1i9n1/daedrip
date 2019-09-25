@@ -11,7 +11,7 @@ $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시
     commentInsert(insertData); //Insert 함수호출(아래)
 });
 
-function commentInsert(insertData){
+function commentInsert(insertData){  
     $.ajax({
         url : '/comment/insert',
         type : 'post',
@@ -46,7 +46,7 @@ function commentUpdate(idx, content){
   
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+idx+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+idx+');">수정</button> </span>';
+    a += '<button class="btn btn-default" type="button" onclick="commentUpdateProc('+idx+');"><span class="fas fa-edit mr-1"></span> Edit</button> </span>';
     a += '</div>';
     
     $('.commentContent'+idx).html(a);
