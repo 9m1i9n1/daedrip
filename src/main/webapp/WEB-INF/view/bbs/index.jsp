@@ -91,14 +91,18 @@
   <!-- <div align="center">
     <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
   </div> -->
+
   <%-- <div align="center">
     <a href="/bbs/write" class="ry my-1 my-sm-btn btn-prima0">
       <span class="fas fa-pen-square mr-1"></span> write
     </a>
   </div> --%>
+
   <div align="center">
     <c:if test="${sessionScope.signVO != null}">
-      <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+      <a href="/bbs/write" class="btn btn-primary my-1 my-sm-0"">
+        <span class="fas fa-edit mr-1"></span> write
+      </a>
     </c:if>
   </div>
 </body>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout>
 
@@ -9,13 +8,15 @@
   </br>
 
   <h1 class="display-3" align="center">join membership</h1>
+
   <div class="col-md-5 order-md-1" style="margin:40px auto;">
-    <form:form cssClass="order-md-3 form-horizontal" modelAttribute="accountVO" id="signup" action="/sign/up" method="post">
+
+    <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/up" method="post">
 
       <div class="mb-3">
         <label>ID</label>
-        <form:input cssClass="form-control" path="userid" value="${accountVO.userid}" placeholder="you@example.com" />
-        <form:errors path="userid" style="color:red;"/>
+        <input type="email" class="form-control" name="userid" value="${accountVO.id}" placeholder="you@example.com" required/>
+        <p style="color:red;">${userIdError}</p>
       </div>
 
       <br />
@@ -23,51 +24,59 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Password</label>
-          <form:password cssClass="form-control" path="pw" />
-          <form:errors path="pw" style="color:red;"/>
+          <input type="password" class="form-control" name="pw" required/>
+          <p style="color:red;">${pwError}</p>
         </div>
         <div class="col-md-6 mb-3">
           <label>Password Check</label>
-          <input class="form-control" name="pwCheck" />
-          <p name="pwCheck" style="color:red;" ></p>
+          <input type="password" class="form-control" name="pwCheck" required/>
+          <p style="color:red;">${pwCheckError}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Nickname</label>
-          <form:input cssClass="form-control" path="nickname" value="${accountVO.nickname}" />
+          <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" required/>
           <p style="color:red;">${nameError}</p>
         </div>
         <div class="col-md-6 mb-3">
           <label>Email</label>
-          <form:input type="email" cssClass="form-control" path="email" value="${accountVO.email }" />
+          <input type="email" class="form-control" name="email" value="${accountVO.email }" required/>
           <p style="color:red;">${emailError}</p>
         </div>
       </div>
+
+      <!-- <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" value="${accountVO.email }" />
+        <p style="color:red;">${emailError}</p>
+      </div>
+    </div> -->
 
 
       <label>Postcode</label>
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input type="text" placeholder="Postcode" name="zipcode" class="form-control" value="${accountVO.zipcode}" />
+          <input type="text" placeholder="Postcode" name="zipcode" class="form-control" value="${accountVO.zipcode}" required/>
           <p style="color:red;">${zipcodeError}</p>
         </div>
         <div class="col-md-6 mb-3">
-          <input type="button" onclick="execDaumPostcode()" value="Postcode Search" class="btn btn-primary" />
+          <input type="button" onclick="execDaumPostcode()" value="Postcode Search" class="btn btn-primary"/>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Address</label>
-          <input type="text" placeholder="Address" name="address" class="form-control" value="${accountVO.address }" />
+          <input type="text" placeholder="Address" name="address" class="form-control" value="${accountVO.address }" required/>
           <p style="color:red;">${addressError}</p>
         </div>
         <div class="col-md-6 mb-3">
           <label>Address Detail</label>
           <input type="text" placeholder="Address Detail" name="extraaddress" class="form-control"
-            value="${accountVO.extraaddress}" />
+            value="${accountVO.extraAddress}" required/>
         </div>
       </div>
 
@@ -75,21 +84,20 @@
       <div class="form-group">
         <div class="col-sm-12  text-center">
 
-          <!-- <a href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0"
-            onclick="document.getElementById('signup').submit();">
+          <button href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0">
             <span class="fas fa-user-plus mr-1"></span> ok
-          </a>
-          <a href="/sign/in" class="btn btn-primary btn-danger my-1 my-sm-0">
+          </button>
+          <a href="javascript:history.back()" class="btn btn-primary btn-danger my-1 my-sm-0">
             <span class="fas fa-undo mr-1"></span> back
-          </a> -->
+          </a>
 
-          <input type="submit" value="회원가입" class="btn btn-primary btn-primary my-1 my-sm-0" />
-          <input type="reset" value="취소" class="btn btn-primary btn-danger my-1 my-sm-0" />
+          <!-- <input type="submit" value="회원가입" class="btn btn-primary btn-primary my-1 my-sm-0" />
+          <input type="reset" value="취소" class="btn btn-primary btn-danger my-1 my-sm-0" /> -->
         </div>
       </div>
 
   </div>
-  </form:form>
+  </form>
   </div>
 
 </layoutTag:layout>

@@ -34,14 +34,14 @@
       </div> --%>
       
       <div class="col-sm-12  text-center">
-        <button class="btn btn-primary my-1 my-sm-0">
-          <span class="fas fa-user-check mr-1"></span> Login
+       <button class="btn btn-primary my-1 my-sm-0">
+         <span class="fas fa-user-check mr-1"></span> Login
+       </button>
+       
+       <button type='button' onclick="location.href='/sign/up'" class="btn btn-primary btn-danger my-1 my-sm-0">
+         <span class="fas fa-user-plus mr-1"></span> SingUp
         </button>
-      
-        <button type='button' onclick="location.href='/sign/up'" class="btn btn-primary btn-danger my-1 my-sm-0">
-          <span class="fas fa-user-plus mr-1"></span> SingUp
-          </button>
-        </div>
+       </div>
     </fieldset>
   </form>
 </div>
