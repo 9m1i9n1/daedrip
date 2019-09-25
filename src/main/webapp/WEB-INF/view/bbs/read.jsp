@@ -68,6 +68,7 @@
 
   <br/>
   <!--  댓글  -->
+  <c:if test="${sessionScope.signVO == null}">
     <div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
@@ -80,7 +81,7 @@
               </div>
         </form>
     </div>
-
+    </c:if>
     <div class="container">
         <div class="commentList"></div>
     </div>

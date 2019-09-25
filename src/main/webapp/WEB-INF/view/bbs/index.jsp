@@ -94,7 +94,7 @@
     </c:if>
   </div>
 
-  <form action="/bbs/delete/${}" method="post">
+  <form action="/bbs/delete/" method="post">
     <button>버튼</button>
   </form>
   

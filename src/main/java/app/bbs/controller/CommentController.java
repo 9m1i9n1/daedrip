@@ -2,6 +2,9 @@ package app.bbs.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import app.bbs.vo.CommentVO;
+import app.sign.vo.SignVO;
 import app.bbs.service.CommentService;
 
 @Controller
@@ -23,14 +28,14 @@ public class CommentController {
   @RequestMapping("/list") // 댓글 리스트
   @ResponseBody
   private List<CommentVO> mCommentServiceList(Model model, int bbs_idx) throws Exception {
-    System.out.println("bbs_idx : " + bbs_idx);
-    
+  
     return mCommentService.commentListService(bbs_idx);
   }
 
   @RequestMapping("/insert") // 댓글 작성
   @ResponseBody
-  private int mCommentServiceInsert(@RequestParam int bbs_idx, @RequestParam String content) throws Exception {
+  private int mCommentServiceInsert(@RequestParam int bbs_idx, @RequestParam String content,
+      @SessionAttribute("signVO") SignVO signVO) throws Exception {
 
     CommentVO comment = new CommentVO();
     comment.setBbs_idx(bbs_idx);
