@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
-<%-- <layoutTag:layout> --%>
 
 <!DOCTYPE html>
 <html>
@@ -94,4 +93,3 @@
 </html>
 <%@ include file="commentS.jsp" %>
 
-<%-- </layoutTag:layout> --%>

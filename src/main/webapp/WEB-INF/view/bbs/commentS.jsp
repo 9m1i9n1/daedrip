@@ -21,8 +21,6 @@ function commentList(){
             $.each(data, function(key, value){ 
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                 a += '<div class="commentInfo'+value.idx+'">'+'댓글번호 : '+value.idx+' / 작성자 : '+value.account_idx;
-                // console.log(value.account_idx);
-                // console.log(${sessionScope.signVO.idx));
                 a += '<a onclick="commentUpdate('+value.idx+',\''+value.content+'\');"> 수정 </a>';
                 a += '<a onclick="commentDelete('+value.idx+');"> 삭제 </a> </div>';
                 a += '<div class="commentContent'+value.idx+'"> <p> 내용 : '+value.content +'</p>';
