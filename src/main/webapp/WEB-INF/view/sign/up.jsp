@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout>
 
@@ -11,14 +12,13 @@
 
   <div class="col-md-5 order-md-1" style="margin:40px auto;">
 
-    <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/up" method="post">
+    <form:form class="order-md-3 form-horizontal" id="signup" modelAttribute="accountVO" action="/sign/up" method="post">
 
       <div class="mb-3">
         <label>ID</label>
-        <input type="email" class="form-control" name="userid" value="${accountVO.id}" placeholder="you@example.com" required/>
+        <form:input type="email" class="form-control" path="userid" placeholder="you@example.com" required/>
         <p style="color:red;">${userIdError}</p>
       </div>
-
       <br />
 
       <div class="row">
@@ -97,7 +97,7 @@
       </div>
 
   </div>
-  </form>
+  </form:form>
   </div>
 
 </layoutTag:layout>

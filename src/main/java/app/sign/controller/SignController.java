@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,19 +54,6 @@ public class SignController {
     }
     return "redirect:/";
   }
-
-  // @PostMapping("/up")
-  // public String upExcute(AccountVO accountVO, HttpServletResponse response)
-  // throws Exception {
-  // // PrintWriter out = response.getWriter();
-  // // if (accountService.create(accountVO) == 1) {
-  // // out.println("<script>alert('회원가입이 되었습니다.');</script>");
-  // // } else {
-  // // out.println("<script>alert('회원가입에 실패하였습니다.');</script>");
-  // // }
-
-  // return "redirect:/";
-  // }
 
   @PostMapping("/up")
   public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult) throws Exception {
