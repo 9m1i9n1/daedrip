@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 
 <layoutTag:layout>
@@ -39,9 +38,9 @@
       </tr>
 
       <c:forEach var="p" items="${list}">
-        <tr onclick="location.href='/bbs/read/${p.idx}'">
+        <tr >
           <td align="center">${p.idx}</td>
-          <td>${p.title}</td>
+          <td onclick="location.href='/bbs/read/${p.idx}'">${p.title}</td>
           <td align="center">${p.nickname}</td>
           <td align="center">${p.readCount}</td>
           <td align="center">
@@ -56,22 +55,47 @@
   <div align="center">
     <ul class="pagination" style="justify-content: center;">
       <c:if test="${pageMakeVO.prev}">
-        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.startPage - 1}">이전</a></li>
+        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.startPage - 1}"><<</a></li>
       </c:if>
 
-      <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+      <%-- <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
         <li class="page-item">
           <c:out value="${pageMakeVO.pageVO.page == idx ? '' : ''}" />
           <a class="page-link" href="${path}?page=${idx}">${idx}</a>
         </li>
-      </c:forEach>
+        </c:forEach> --> --%>
 
-      <c:if test="${pageMakeVO.next && pageMakeVO.endPage > 0}">
-        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.endPage + 1}">다음</a></li>
-      </c:if>
+
+        <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+          <ul class="pagination">
+            <c:if test="${pageMakeVO.pageVO.page == idx}">
+              <li class="page-item active">
+                <a class="page-link" href="${path}?page=${idx}">${idx}</a>
+              </li>
+            </c:if>
+            <c:if test="${pageMakeVO.pageVO.page != idx}">
+              <li class="page-item">
+                <a class="page-link" href="${path}?page=${idx}">${idx}</a>
+              </li>
+            </c:if>
+          </ul>
+        </c:forEach>
+
+        <c:if test="${pageMakeVO.next && pageMakeVO.endPage > 0}">
+          <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.endPage + 1}">>></a></li>
+        </c:if>
     </ul>
   </div>
 
+  <!-- <button class="btn btn-primary btn-sm" style="margin: auto;" onclick="location.href='/bbs/write'">글쓰기</button> -->
+  <!-- <div align="center">
+    <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+  </div> -->
+  <%-- <div align="center">
+    <a href="/bbs/write" class="ry my-1 my-sm-btn btn-prima0">
+      <span class="fas fa-pen-square mr-1"></span> write
+    </a>
+  </div> --%>
   <div align="center">
     <c:if test="${sessionScope.signVO != null}">
       <a href="/bbs/write" class="btn btn-primary">글쓰기</a>

@@ -2,92 +2,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
-<%-- <layoutTag:layout /> --%>
+<layoutTag:layout>
 
-<jsp:include page="/WEB-INF/view/header.jsp" />
+  <jsp:include page="/WEB-INF/view/header.jsp" />
+  </br>
 
-</br>
-<h1 class="display-3" align="center">join membership</h1>
+  <h1 class="display-3" align="center">join membership</h1>
 
+  <div class="col-md-5 order-md-1" style="margin:40px auto;">
 
-<div class="col-md-5 order-md-1" style="margin:40px auto;">
+    <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/up" method="post">
 
-  <form:form cssClass="order-md-3 form-horizontal" id="signup" action="/sign/up" method="post">
-
-    <div class="mb-3">
-      <label>ID</label>
-      <input type="email" class="form-control" name="userid" value="${accountVO.id}" placeholder="you@example.com" />
-      <p style="color:red;">${userIdError}</p>
-    </div>
-
-    <br />
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Password</label>
-        <input type="password" class="form-control" name="pw" />
-        <p style="color:red;">${pwError}</p>
+      <div class="mb-3">
+        <label>ID</label>
+        <input type="email" class="form-control" name="userid" value="${accountVO.id}" placeholder="you@example.com" />
+        <p style="color:red;">${userIdError}</p>
       </div>
-      <div class="col-md-6 mb-3">
-        <label>Password Check</label>
-        <input type="password" class="form-control" name="pwCheck" />
-        <p style="color:red;">${pwCheckError}</p>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Nickname</label>
-        <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" />
-        <p style="color:red;">${nameError}</p>
-      </div>
-    </div>
+      <br />
 
-    <div class="row">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" name="pw" />
+          <p style="color:red;">${pwError}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Password Check</label>
+          <input type="password" class="form-control" name="pwCheck" />
+          <p style="color:red;">${pwCheckError}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Nickname</label>
+          <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" />
+          <p style="color:red;">${nameError}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Email</label>
+          <input type="email" class="form-control" name="email" value="${accountVO.email }" />
+          <p style="color:red;">${emailError}</p>
+        </div>
+      </div>
+
+      <!-- <div class="row">
       <div class="col-md-6 mb-3">
         <label>Email</label>
         <input type="email" class="form-control" name="email" value="${accountVO.email }" />
         <p style="color:red;">${emailError}</p>
       </div>
-    </div>
+    </div> -->
 
 
-    <label>우편번호</label>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <input type="text" placeholder="우편번호" name="zipcode" class="form-control" value="${accountVO.zipcode}" />
-        <p style="color:red;">${zipcodeError}</p>
+      <label>Postcode</label>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <input type="text" placeholder="Postcode" name="zipcode" class="form-control" value="${accountVO.zipcode}" />
+          <p style="color:red;">${zipcodeError}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="button" onclick="execDaumPostcode()" value="Postcode Search" class="btn btn-primary" />
+        </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary" />
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Address</label>
-        <input type="text" placeholder="주소" name="address" class="form-control" value="${accountVO.address }" />
-        <p style="color:red;">${addressError}</p>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Address</label>
+          <input type="text" placeholder="Address" name="address" class="form-control" value="${accountVO.address }" />
+          <p style="color:red;">${addressError}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Address Detail</label>
+          <input type="text" placeholder="Address Detail" name="extraaddress" class="form-control"
+            value="${accountVO.extraAddress}" />
+        </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <label>Address Detail</label>
-        <input type="text" placeholder="상세주소" name="extraaddress" class="form-control"
-          value="${accountVO.extraAddress}" />
-      </div>
-    </div>
 
 
-    <div class="form-group">
-      <div class="col-sm-12  text-center">
-        <input type="submit" value="회원가입" class="btn btn-success" />
-        <input type="reset" value="취소" class="btn btn-warning" />
-      </div>
-    </div>
+      <div class="form-group">
+        <div class="col-sm-12  text-center">
 
-</div>
-</form:form >
-</div>
+          <!-- <a href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0"
+            onclick="document.getElementById('signup').submit();">
+            <span class="fas fa-user-plus mr-1"></span> ok
+          </a>
+          <a href="/sign/in" class="btn btn-primary btn-danger my-1 my-sm-0">
+            <span class="fas fa-undo mr-1"></span> back
+          </a> -->
+
+          <input type="submit" value="회원가입" class="btn btn-primary btn-primary my-1 my-sm-0" />
+          <input type="reset" value="취소" class="btn btn-primary btn-danger my-1 my-sm-0" />
+        </div>
+      </div>
+
+  </div>
+  </form>
+  </div>
+
+</layoutTag:layout>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script language="javascript">

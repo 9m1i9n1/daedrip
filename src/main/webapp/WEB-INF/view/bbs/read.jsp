@@ -56,6 +56,20 @@
       </form>
     </div>
 
+    <%-- <div  role="group" style="float: right;">
+      <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
+        <span class="fas fa-edit mr-1"></span> Edit
+      </a>
+      
+      
+      <a href="/bbs/delete/${read.idx}" class="btn btn-sm btn-danger my-1 my-sm-0">
+        <span class="fas fa-trash mr-1"></span> Delete
+      </a>
+
+
+      <a href="/bbs" class="btn btn-sm btn-primary my-1 my-sm-0">
+        <span class="fas fa-bars mr-1"></span> List
+      </a> --%>
     <div class="btn-group btn-group-sm" role="group" style="float: right;">
       <c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
         <button class="btn btn-primary" onclick="location.href='/bbs/update/${read.idx}'">수정</button>

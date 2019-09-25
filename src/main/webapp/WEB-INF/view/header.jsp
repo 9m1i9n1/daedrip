@@ -28,8 +28,6 @@
 </style>
 
 <body>
-
-
   <div class="bg-primary text-white navbar-dark">
     <div class="container">
       <nav class="navbar px-0 navbar-expand-lg navbar-dark">
@@ -46,21 +44,21 @@
             <a href="form.html" class="p-3 text-decoration-none text-white">Form example</a> -->
           </div>
 
-
-
         </div>
         <div>
         <c:if test="${sessionScope.signVO == null}">
+
           <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
-            <span>Login</span>
+            <span class="fas fa-user-check mr-1"> Login</span>
           </a>
+
           <a href="/sign/up" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
-            <span>SignUp</span>
+            <span class="fas fa-user-plus mr-1"> SignUp</span>
           </a>
         </c:if>
         <c:if test="${sessionScope.signVO != null}">
           <a href="/sign/out" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
-            <span>Logout</span>
+            <span class="fas fa-user-alt-slash mr-1"> Logout</span>
             <!-- ${sessionScope.signVO.getUserId()} -->
           </a>
         </c:if>
