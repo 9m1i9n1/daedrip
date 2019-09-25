@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script>
 var bbs_idx = '${read.idx}'; //게시글 번호
  
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-    var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-    console.table(insertData);
-    
-    commentInsert(insertData); //Insert 함수호출(아래)
+    if($('[name=commentInsertForm]').find("[name='content']").val()!=''){
+        var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+        commentInsert(insertData); //Insert 함수호출(아래)
+    }else{
+        alert("댓글입력좀 부탁해");
+    }
 });
 
 function commentInsert(insertData){  
