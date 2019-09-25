@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="commentList" parameterType="int" resultType="app.bbs.vo.CommentVO">
-			select a.nickname, c.idx, c.bbs_idx, c.content
+			select a.nickname, c.idx, c.bbs_idx, c.content, c.account_idx
 			from comment c 
 			join(select idx, nickname from account) a
 			on c.account_idx=a.idx
