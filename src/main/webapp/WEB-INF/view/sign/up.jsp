@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%-- <layoutTag:layout /> --%>
 
 <jsp:include page="/WEB-INF/view/header.jsp" />
@@ -12,7 +13,7 @@
 
 <div class="col-md-5 order-md-1" style="margin:40px auto;">
 
-  <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/up" method="post">
+  <form:form cssClass="order-md-3 form-horizontal" id="signup" action="/sign/up" method="post">
 
     <div class="mb-3">
       <label>ID</label>
@@ -85,7 +86,7 @@
     </div>
 
 </div>
-</form>
+</form:form >
 </div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -100,7 +101,7 @@
           address = data.jibunAddress;
         }
 
-        var signup = document.forms["signup"];
+        var signup = document.forms["accountVO"];
         signup.zipcode.value = data.zonecode;
         signup.address.value = address
         signup.extraaddress.focus();
