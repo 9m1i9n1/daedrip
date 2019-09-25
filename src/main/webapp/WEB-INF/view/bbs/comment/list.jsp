@@ -4,7 +4,7 @@
 
 <c:forEach var="commentVO" items="${comments}">
   <div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">
-    <div class="commentInfo">댓글번호 : ${commentVO.idx} / 작성자 : ${commentVO.account_idx}
+    <div class="commentInfo">댓글번호 : ${commentVO.idx} / 작성자 : ${commentVO.nickname}
       <c:if test="${sessionScope.signVO.idx == commentVO.account_idx}">
         <button onclick="commentUpdate('${commentVO.idx}','${commentVO.content}');"> 수정 </button>
         <button onclick="commentDelete('${commentVO.idx}');"> 삭제 </button>
@@ -14,4 +14,4 @@
       <p> 내용 : ${commentVO.content}</p>
     </div>
   </div>
-</c:forEach>
+</c:forEach> 

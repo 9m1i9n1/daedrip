@@ -12,5 +12,7 @@ public class CommentVO {
   private String content;
   private Date regDate;// reg_date
   private Date modifyDate;
+  private String nickname;
+
   // private String Writer;
 }

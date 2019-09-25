@@ -44,8 +44,7 @@ function commentList(){
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 function commentUpdate(idx, content){
     var a ='';
-    
-    console.log("asdasdasdasdasd");
+  
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+idx+'" value="'+content+'"/>';
     a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+idx+');">수정</button> </span>';

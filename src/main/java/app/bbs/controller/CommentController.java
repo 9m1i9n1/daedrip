@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import app.bbs.vo.CommentVO;
 import app.sign.vo.SignVO;
 import app.bbs.service.CommentService;
+import app.account.vo.AccountVO;
 
 @Controller
 @RequestMapping("/comment")
@@ -44,10 +45,12 @@ public class CommentController {
     // System.out.println("content : " + content);
     // System.out.println("account_idx : " + account_idx);
     CommentVO comment = new CommentVO();
+    AccountVO account = new AccountVO();
+
     comment.setBbs_idx(bbs_idx);
     comment.setContent(content);
     comment.setAccount_idx(account_idx);
-
+   
     return mCommentService.commentInsertService(comment);
   }
 
