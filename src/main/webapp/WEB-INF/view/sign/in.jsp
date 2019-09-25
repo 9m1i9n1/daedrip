@@ -33,7 +33,7 @@
         <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
       </div> --%>
       
-      <div class="col-sm-12  text-center">
+      <%-- <div class="col-sm-12  text-center">
         <a href="/" class="btn btn-primary my-1 my-sm-0">
           <span class="fas fa-user-check mr-1"></span> Login
         </a>
@@ -41,7 +41,10 @@
         <a href="/sign/up" class="btn btn-primary btn-danger my-1 my-sm-0">
           <span class="fas fa-user-plus mr-1"></span> SingUp
           </a>
-        </div>
+      </div> --%>
+
+      
+
     </fieldset>
   </form>
 </div>
