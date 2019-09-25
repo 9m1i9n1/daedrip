@@ -91,7 +91,7 @@
         <label for="content">comment</label>
         <form name="commentInsertForm">
             <div class="input-group">
-               <input type="hidden" name="account_idx" value="${read.idx}"/>
+               <input type="hidden" name="account_idx" value="${signVO.idx}"/>
                <input type="hidden" name="bbs_idx" value="${read.idx}"/>
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
                <span class="input-group-btn">
