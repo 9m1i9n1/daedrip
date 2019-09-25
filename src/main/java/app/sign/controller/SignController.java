@@ -57,6 +57,11 @@ public class SignController {
     return "redirect:/";
   }
 
+  @GetMapping("/find")
+  public String find() {
+    return "/sign/find";
+  }
+
   @PostMapping("/in")
   public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
       @RequestParam(value = "check", required = false) String check, HttpSession session,

@@ -50,7 +50,7 @@
       </c:forEach>
     </table>
   </div>
-
+  <br/>
   <%-- Page 처리 --%>
   <div align="center">
     <ul class="pagination" style="justify-content: center;">
