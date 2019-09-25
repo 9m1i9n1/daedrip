@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +37,7 @@ public class SignController {
   }
 
   @GetMapping("/up")
-  public String up(Model model) {
-    model.addAttribute("accountVO", new AccountVO());
+  public String up(@ModelAttribute AccountVO accountVO) {
     return "/sign/up";
   }
 
@@ -57,27 +57,20 @@ public class SignController {
     return "redirect:/";
   }
 
-  // @PostMapping("/up")
-  // public String upExcute(AccountVO accountVO, HttpServletResponse response)
-  // throws Exception {
-  // // PrintWriter out = response.getWriter();
-  // // if (accountService.create(accountVO) == 1) {
-  // // out.println("<script>alert('회원가입이 되었습니다.');</script>");
-  // // } else {
-  // // out.println("<script>alert('회원가입에 실패하였습니다.');</script>");
-  // // }
-
-  // return "redirect:/";
-  // }
-
   @PostMapping("/up")
-  public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult) throws Exception {
-    System.out.println(bindingResult.toString());
-    if (bindingResult.hasErrors()) {
-      System.out.println("에러발생");
+  public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult,
+      @ModelAttribute @RequestParam("pwCheck") String pwCheck, Model model, HttpServletResponse response)
+      throws Exception {
+
+    if (!accountVO.getPw().equals(pwCheck)) {
+      model.addAttribute("pwCheckError", "비밀번호 맞춰주세요");
+      return "/sign/up";
+    } else if (bindingResult.hasErrors()) {
       return "/sign/up";
     } else {
-      System.out.println("회원가입성공!!");
+      PrintWriter out = response.getWriter();
+      out.println("<script>alert('회원가입되었습니다');</script>");
+      accountService.create(accountVO);
       return "redirect:/";
     }
   }

@@ -6,4 +6,5 @@
     select * from account 
     where userid=#{userId} and pw = #{pw}
   </select>
+
 </mapper>

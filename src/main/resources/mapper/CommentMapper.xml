@@ -10,8 +10,11 @@
 	</select>
 
 	<select id="commentList" parameterType="int" resultType="app.bbs.vo.CommentVO">
-
-		SELECT * FROM comment WHERE bbs_idx = #{bbs_idx} ORDER BY idx DESC
+			select a.nickname, c.idx, c.bbs_idx, c.content, c.account_idx
+			from comment c 
+			join(select idx, nickname from account) a
+			on c.account_idx=a.idx
+		 WHERE bbs_idx = #{bbs_idx} ORDER BY idx DESC
 
 	</select>
 
@@ -31,4 +34,6 @@
 	<delete id="commentDelete" parameterType="int">
 		DELETE FROM comment WHERE idx = #{idx}
 	</delete>
+
+
 </mapper>
