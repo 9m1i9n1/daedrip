@@ -12,6 +12,7 @@
     <title>BIT 9월 2조 :: 글 읽기</title>
   </head>
 
+
 <body>
 
 <jsp:include page="/WEB-INF/view/header.jsp" />
@@ -68,7 +69,7 @@
       <hr class="mb-3">
       <h2><span class="fas fa-comments mr-1"></span> comment</h2> <br/>
 
-      <form name="commentInsertForm" onsubmit="return false">
+      <form name="commentInsertForm" onsubmit="return false;">
         <div class="input-group mb-3">
             <input type="hidden" name="account_idx" value="${signVO.idx}"/>
             <input type="hidden" name="bbs_idx" value="${read.idx}"/>
@@ -77,7 +78,7 @@
             
 
             <div class="input-group-append">
-              <button class="btn btn-danger" type="button" name="commentInsertBtn">GoGo!</button>
+              <button class="btn btn-danger" type="button" name="commentInsertBtn" >GoGo!</button>
             </div>
 
         </div>
