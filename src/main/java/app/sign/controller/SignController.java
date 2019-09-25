@@ -36,7 +36,8 @@ public class SignController {
   }
 
   @GetMapping("/up")
-  public String up() {
+  public String up(Model model) {
+    model.addAttribute("accountVO", new AccountVO());
     return "/sign/up";
   }
 
@@ -74,9 +75,10 @@ public class SignController {
     System.out.println(bindingResult.toString());
     if (bindingResult.hasErrors()) {
       System.out.println("에러발생");
+      return "/sign/up";
     } else {
       System.out.println("회원가입성공!!");
+      return "redirect:/";
     }
-    return "redirect:/";
   }
 }
