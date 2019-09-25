@@ -211,7 +211,7 @@
         <div class="container">
         <%-- <label for="content">comment</label> --%>
         <h5>comment</h5>
-        <form name="commentInsertForm">
+        <form name="commentInsertForm" onsubmit="return false">
             <div class="input-group">
             <input type="hidden" name="account_idx" value="${signVO.idx}"/>
                <input type="hidden" name="bbs_idx" value="${read.idx}"/>
