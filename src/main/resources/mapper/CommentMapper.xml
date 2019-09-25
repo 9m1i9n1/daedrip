@@ -11,7 +11,7 @@
 
 	<select id="commentList" parameterType="int" resultType="app.bbs.vo.CommentVO">
 
-		SELECT * FROM comment WHERE bbs_idx = #{bbs_idx} ORDER BY idx
+		SELECT * FROM comment WHERE bbs_idx = #{bbs_idx} ORDER BY idx DESC
 
 	</select>
 

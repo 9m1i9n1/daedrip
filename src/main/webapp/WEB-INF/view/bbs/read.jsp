@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 
+<layoutTag:layout>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -71,7 +73,7 @@
 
   <br/>
   <!--  댓글  -->
-  <c:if test="${sessionScope.signVO == null}">
+  <c:if test="${sessionScope.signVO != null}">
     <div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
@@ -85,6 +87,7 @@
         </form>
     </div>
     </c:if>
+    
     <div class="container">
         <div class="commentList"></div>
     </div>
@@ -92,4 +95,6 @@
 </body>
 </html>
 <%@ include file="commentS.jsp" %>
+
+</layoutTag:layout>
 
