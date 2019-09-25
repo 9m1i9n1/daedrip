@@ -30,7 +30,9 @@
         <div class="col-md-6 mb-3">
           <label>Password Check</label>
           <input type="password" class="form-control" name="pwCheck" required="required"/>
-          <p style="color:red;">${pwCheckError}</p>
+          <p style="color:red;">
+            ${pwCheckError}
+          </p>
         </div>
       </div>
 
