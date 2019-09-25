@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,7 @@ public class SignController {
   }
 
   @GetMapping("/up")
-  public String up(Model model) {
-    model.addAttribute("accountVO", new AccountVO());
+  public String up(@ModelAttribute AccountVO accountVO) {
     return "/sign/up";
   }
 
@@ -56,12 +56,10 @@ public class SignController {
 
   @PostMapping("/up")
   public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult) throws Exception {
-    System.out.println(bindingResult.toString());
     if (bindingResult.hasErrors()) {
-      System.out.println("에러발생");
       return "/sign/up";
     } else {
-      System.out.println("회원가입성공!!");
+      accountService.create(accountVO);
       return "redirect:/";
     }
   }

@@ -16,21 +16,20 @@
 
       <div class="mb-3">
         <label>ID</label>
-        <form:input class="form-control" path="userid" placeholder="you@example.com" required/>
+        <form:input path="userid" class="form-control"  required="required"/>
         <form:errors path="userid" style="color:red;" />
-        <p style="color:red;"></p>
       </div>
       <br />
 
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Password</label>
-          <input type="password" class="form-control" name="pw" required/>
-          <p style="color:red;">${pwError}</p>
+          <form:input path="pw" type="password" class="form-control" required="required"/>
+          <form:errors path="pw" style="color:red;"/>
         </div>
         <div class="col-md-6 mb-3">
           <label>Password Check</label>
-          <input type="password" class="form-control" name="pwCheck" required/>
+          <input type="password" class="form-control" name="pwCheck" required="required"/>
           <p style="color:red;">${pwCheckError}</p>
         </div>
       </div>
@@ -38,30 +37,20 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Nickname</label>
-          <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" required/>
-          <p style="color:red;">${nameError}</p>
+          <form:input path="nickname" type="text" class="form-control" value="${accountVO.nickname}" required="required"/>
+          <form:errors path="nickname" style="color:red;"/>
         </div>
         <div class="col-md-6 mb-3">
           <label>Email</label>
-          <input type="email" class="form-control" name="email" value="${accountVO.email }" required/>
-          <p style="color:red;">${emailError}</p>
+          <form:input path="email" type="email" class="form-control" value="${accountVO.email}" placeholder="you@example.com" required="required"/>
+          <form:errors style="color:red;"/>
         </div>
       </div>
-
-      <!-- <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Email</label>
-        <input type="email" class="form-control" name="email" value="${accountVO.email }" />
-        <p style="color:red;">${emailError}</p>
-      </div>
-    </div> -->
-
-
       <label>Postcode</label>
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input type="text" placeholder="Postcode" name="zipcode" class="form-control" value="${accountVO.zipcode}" required/>
-          <p style="color:red;">${zipcodeError}</p>
+          <form:input path="zipcode" type="text" placeholder="Postcode" class="form-control" value="${accountVO.zipcode}" required="required" readOnly="readOnly"/>
+          <form:errors path="zipcode" style="color:red;"/>
         </div>
         <div class="col-md-6 mb-3">
           <input type="button" onclick="execDaumPostcode()" value="Postcode Search" class="btn btn-primary"/>
@@ -71,13 +60,12 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Address</label>
-          <input type="text" placeholder="Address" name="address" class="form-control" value="${accountVO.address }" required/>
-          <p style="color:red;">${addressError}</p>
+          <form:input path="address" type="text" placeholder="Address" class="form-control" value="${accountVO.address}" required="required" readOnly="readOnly"/>
+          <form:errors path="address" style="color:red;"/>
         </div>
         <div class="col-md-6 mb-3">
           <label>Address Detail</label>
-          <input type="text" placeholder="Address Detail" name="extraaddress" class="form-control"
-            value="${accountVO.extraaddress}" required/>
+          <form:input path="extraaddress" type="text" placeholder="Address Detail" class="form-control" value="${accountVO.extraaddress}" required="required"/>
         </div>
       </div>
 
@@ -115,7 +103,7 @@
           address = data.jibunAddress;
         }
 
-        var signup = document.forms["accountVO"];
+        var signup = document.forms["signup"];
         signup.zipcode.value = data.zonecode;
         signup.address.value = address
         signup.extraaddress.focus();
