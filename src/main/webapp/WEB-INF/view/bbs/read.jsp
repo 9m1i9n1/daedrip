@@ -58,9 +58,13 @@
     <div class="btn-group btn-group-sm" role="group" style="float: right;">
       <c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
         <button class="btn btn-primary" onclick="location.href='/bbs/update/${read.idx}'">수정</button>
-        <button class="btn btn-danger" onclick="location.href='/bbs/delete/${read.idx}'">삭제</button>
-      </c:if> 
 
+        <form action="/bbs/delete/${read.idx}" method="post">
+          <input type="hidden" name="account_idx" value=${read.account_idx} />
+          <button>삭제</button>
+        </form>
+        
+      </c:if> 
       <button class="btn btn-primary" onclick="location.href='/bbs'">목록</button>
     </div>
 

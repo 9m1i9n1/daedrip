@@ -93,11 +93,6 @@
       <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
     </c:if>
   </div>
-
-  <form action="/bbs/delete/" method="post">
-    <button>버튼</button>
-  </form>
-  
 </body>
 
 </html>
