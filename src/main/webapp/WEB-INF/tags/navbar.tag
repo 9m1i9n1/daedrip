@@ -1,70 +1,79 @@
-<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
+<!DOCTYPE html>
+<html lang="en">
 
-		<div class="navbar-header">
-			<button type=button class="navbar-toggle collapsed" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">토글 네비게이션</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="/">귀한 Spring Boot로 맨든 게시판</a>
-		</div>
+<head>
+  <meta charset="UTF-8">
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active">
-					<a href="/">게시판 1</a>
-				</li>
-				<li>
-					<a href="/">게시판 2</a>
-				</li>
-				<li>
-					<a href="/">게시판 3</a>
-				</li>
-				<li>
-					${sessionScope.signVO}
-					<c:if test="${empty sessionScope.signVO}">
-						<a href="#myModal" class="trigger-btn" data-toggle="modal">SignIn</a>
-					</c:if>
-					<c:if test="${empty !sessionScope.signVO}">
-						<button>로그 아웃</button>
-					</c:if>
-					<li />
-			</ul>
-		</div>
-	</div>
-</nav>
-<div>
-</div>
-<div id="myModal" class="modal fade" style="display: none;">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Member Login</h4>
-			</div>
-			<div class="modal-body">
-				<form action="/sign/in" method="post">
-					<div class="form-group">
-						<i class="fa fa-user"></i>
-						<input type="text" name="userid" class="form-control" placeholder="Username" required="required">
-					</div>
-					<div class="form-group">
-						<i class="fa fa-lock"></i>
-						<input type="password" name="pw" class="form-control" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-					</div>
-				</form>
+  <%-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/bootstrap4-daydream.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Shadows+Into+Light" rel="stylesheet"> --%>
 
-			</div>
-			<div class="modal-footer">
-				<a href="#">Forgot Password?</a>
-			</div>
-		</div>
-	</div>
-</div>
+  <title>Document</title>
+
+</head>
+<style>
+  #logo:hover {
+    content: url('/image/logo3.png');
+  }
+
+  .asize {
+    width: 30%;
+    height: 30%;
+  }
+</style>
+
+<body>
+
+
+  <div class="bg-primary text-white navbar-dark">
+    <div class="container">
+      <nav class="navbar px-0 navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="asize" style="margin: 0%" href="/"><img id="logo" src="/image/logo.png" width="80%" /></a>
+
+            <a href="/bbs" class="pl-md-0 p-3 text-white">Board-1</a>
+            <!-- <a href="app.html" class="p-3 text-decoration-none text-white">App example</a>
+            <a href="form.html" class="p-3 text-decoration-none text-white">Form example</a> -->
+          </div>
+
+
+
+        </div>
+        <div>
+        <c:if test="${sessionScope.signVO == null}">
+
+          <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>Login</span>
+          </a>
+
+          <a href="/sign/up" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>SignUp</span>
+          </a>
+        </c:if>
+        <c:if test="${sessionScope.signVO != null}">
+          <a href="/sign/out" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary">
+            <span>Logout</span>
+            <!-- ${sessionScope.signVO.getUserId()} -->
+          </a>
+        </c:if>
+        <!-- <div style="text-align: right">
+          <a href="/sign/in" class="btn btn-outline-light btn-lg m-2 btn-hover-text-primary"> <span>Sign</span> </a>
+        </div> -->
+        <div>
+      </nav>
+    </div>
+  </div>
+</body>
+
+</html>

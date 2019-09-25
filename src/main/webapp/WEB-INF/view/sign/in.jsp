@@ -5,7 +5,49 @@
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout />
 
-<div class="panel-body">
+<jsp:include page="/WEB-INF/view/header.jsp" />
+<br/>
+<h1 class="display-3" align="center">Login</h1>
+
+<div class="col-md-3 order-md-1" style="margin:40px auto;">
+  <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/in" method="post">
+    <fieldset>
+      <div class="mb-3 form-group">
+        <input type="text" class="form-control" placeholder="ID" name="userid" />
+      </div>
+
+      <div class="mb-3">
+        <input type="password" class="form-control" placeholder="Password" name="pw" />
+      </div>
+
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
+        <label class="custom-control-label" for="customCheck1">아이디 기억</label>        
+        <%-- <a href="#" style="text-align:right;">find</a> --%>
+      </div>
+
+      <div><h1></h1></div>
+
+      <%-- <div class="custom-control custom-checkbox">
+        <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1">
+        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+      </div> --%>
+      
+      <div class="col-sm-12  text-center">
+        <a href="/" class="btn btn-primary my-1 my-sm-0">
+          <span class="fas fa-user-check mr-1"></span> Login
+        </a>
+      
+        <a href="/sign/up" class="btn btn-primary btn-danger my-1 my-sm-0">
+          <span class="fas fa-user-plus mr-1"></span> SingUp
+          </a>
+        </div>
+    </fieldset>
+  </form>
+</div>
+
+
+<%-- <div class="panel-body">
     <form action="/sign/in" method="post">
         <fieldset>
             <div class="form-group">
@@ -27,4 +69,4 @@
             </div>
         </fieldset>
     </form>
-</div>
+</div> --%>

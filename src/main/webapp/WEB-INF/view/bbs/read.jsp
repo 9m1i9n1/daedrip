@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
-<%-- <layoutTag:layout> --%>
+
+<layoutTag:layout>
 
 <!DOCTYPE html>
 <html>
@@ -55,20 +56,19 @@
     </div>
 
     <div  role="group" style="float: right;">
-    <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
-          <span class="fas fa-edit mr-1"></span>
-      Edit</a>
+      <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
+        <span class="fas fa-edit mr-1"></span> Edit
+      </a>
       
       
       <a href="/bbs/delete/${read.idx}" class="btn btn-sm btn-danger my-1 my-sm-0">
-          <span class="fas fa-trash mr-1"></span>
-          Delete</a>
+        <span class="fas fa-trash mr-1"></span> Delete
+      </a>
 
-          
 
-          <a href="/bbs" class="btn btn-sm btn-primary my-1 my-sm-0">
-          <span class="fas fa-bars mr-1"></span>
-      List</a>
+      <a href="/bbs" class="btn btn-sm btn-primary my-1 my-sm-0">
+        <span class="fas fa-bars mr-1"></span> List
+      </a>
     </div>
 
   </div>
@@ -96,4 +96,4 @@
 </html>
 <%@ include file="commentS.jsp" %>
 
-<%-- </layoutTag:layout> --%>
+</layoutTag:layout>
