@@ -115,7 +115,7 @@
           address = data.jibunAddress;
         }
 
-        var signup = document.forms["signup"];
+        var signup = document.forms["accountVO"];
         signup.zipcode.value = data.zonecode;
         signup.address.value = address
         signup.extraaddress.focus();

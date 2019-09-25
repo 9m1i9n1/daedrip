@@ -27,7 +27,7 @@
     <form class="order-md-3" id="write" class="form-horizontal" action="/bbs/writeProc" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for ="subject">제목</label>
-        <input class="form-control" type="text" name="userid" placeholder="제목을 입력하세요."/>
+        <input class="form-control" type="text" name="title" placeholder="제목을 입력하세요."/>
       </div>
 
       <div class="row">
