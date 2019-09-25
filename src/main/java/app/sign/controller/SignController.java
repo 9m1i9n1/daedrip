@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,16 +43,25 @@ public class SignController {
   }
 
   @GetMapping("/out")
-  public String out(HttpSession session) {
+  public String out(HttpSession session, @CookieValue(value = "signVO", required = false) SignVO cv,
+      HttpServletResponse response) throws Exception {
+    System.out.println(cv.toString());
     session.invalidate();
+    PrintWriter out = response.getWriter();
+    out.println("<script>alert('로그아웃 되었습니다.');</script>");
     return "redirect:/";
   }
 
   @PostMapping("/in")
   public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
-      @RequestParam(value = "check", required = false) String check, HttpSession session, Model model) {
+      @RequestParam(value = "check", required = false) String check, HttpSession session,
+      @CookieValue(value = "signVO", required = false) SignVO cv) {
+
     SignVO signVO = signService.in(userId, pw);
     if (signVO != null) {
+      if (check != null && check.equals("on")) {
+        cv = signVO;
+      }
       session.setAttribute("signVO", signVO);
     }
     return "redirect:/";

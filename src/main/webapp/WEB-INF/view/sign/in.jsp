@@ -21,7 +21,7 @@
       </div>
 
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
+        <input type="checkbox" name="check" class="custom-control-input" id="customCheck1" />
         <label class="custom-control-label" for="customCheck1">아이디 기억</label>        
         <%-- <a href="#" style="text-align:right;">find</a> --%>
       </div>
