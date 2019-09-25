@@ -2,6 +2,8 @@ package app.sign.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -43,9 +45,12 @@ public class SignController {
   }
 
   @GetMapping("/out")
-  public String out(HttpSession session, @CookieValue(value = "signVO", required = false) SignVO cv,
-      HttpServletResponse response) throws Exception {
-    System.out.println(cv.toString());
+  public String out(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    for (Cookie cookie : request.getCookies()) {
+      if (cookie.getName().startsWith("signVO")) {
+        cookie.setMaxAge(0);
+      }
+    }
     session.invalidate();
     PrintWriter out = response.getWriter();
     out.println("<script>alert('로그아웃 되었습니다.');</script>");
@@ -55,12 +60,15 @@ public class SignController {
   @PostMapping("/in")
   public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
       @RequestParam(value = "check", required = false) String check, HttpSession session,
-      @CookieValue(value = "signVO", required = false) SignVO cv) {
+      HttpServletResponse response) {
 
     SignVO signVO = signService.in(userId, pw);
     if (signVO != null) {
       if (check != null && check.equals("on")) {
-        cv = signVO;
+        response.addCookie(new Cookie("signVO.idx", signVO.getIdx()));
+        response.addCookie(new Cookie("signVO.userId", signVO.getUserId()));
+        response.addCookie(new Cookie("signVO.nickname", signVO.getNickname()));
+        response.addCookie(new Cookie("signVO.email", signVO.getEmail()));
       }
       session.setAttribute("signVO", signVO);
     }
