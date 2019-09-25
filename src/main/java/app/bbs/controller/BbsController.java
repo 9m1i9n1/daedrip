@@ -11,7 +11,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -62,7 +61,10 @@ public class BbsController {
   }
 
   @GetMapping("/read/{idx}")
-  private String read(@PathVariable int idx, Model model) throws Exception {
+  private String read(@PathVariable int idx, Model model, HttpServletRequest request) throws Exception {
+
+    HttpSession session = request.getSession();
+    session.setAttribute("check", "ok");
 
     bbsService.updateCountService(idx);
     model.addAttribute("read", bbsService.readService(idx));

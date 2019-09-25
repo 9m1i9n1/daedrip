@@ -72,17 +72,16 @@
         <label for="content">comment</label>
         <form name="commentInsertForm">
             <div class="input-group">
-                <c:if test="${(sessionScope.signVO != null)}"> 
-                  <input type="hidden" name="bbs_idx" value="${read.idx}"/>
-                  <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-                  <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-                </c:if> 
+               <input type="hidden" name="account_idx" value="${read.idx}"/>
+               <input type="hidden" name="bbs_idx" value="${read.idx}"/>
+               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
                </span>
               </div>
         </form>
     </div>
-
+  
     <div class="container">
         <div class="commentList"></div>
     </div>
