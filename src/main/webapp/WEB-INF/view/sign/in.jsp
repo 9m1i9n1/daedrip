@@ -21,7 +21,7 @@
       </div>
 
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
+        <input type="checkbox" name="check" class="custom-control-input" id="customCheck1" />
         <label class="custom-control-label" for="customCheck1">아이디 기억</label>        
         <%-- <a href="#" style="text-align:right;">find</a> --%>
       </div>
@@ -38,7 +38,7 @@
          <span class="fas fa-user-check mr-1"></span> Login
        </button>
        
-       <button type='button' onclick="location.href='/sign/up'" class="btn btn-primary btn-danger my-1 my-sm-0">
+       <button type='button' onclick="location.href='/sign/up'" class="btn btn-danger my-1 my-sm-0">
          <span class="fas fa-user-plus mr-1"></span> SingUp
         </button>
        </div>
