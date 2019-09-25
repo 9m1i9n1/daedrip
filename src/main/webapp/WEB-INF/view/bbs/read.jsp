@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
-<%-- <layoutTag:layout> --%>
+<layoutTag:layout>
 
 <!DOCTYPE html>
 <html>
@@ -72,10 +72,12 @@
         <label for="content">comment</label>
         <form name="commentInsertForm">
             <div class="input-group">
-               <input type="hidden" name="bbs_idx" value="${read.idx}"/>
-               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-               <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+                <c:if test="${(sessionScope.signVO != null)}"> 
+                  <input type="hidden" name="bbs_idx" value="${read.idx}"/>
+                  <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+                  <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+                </c:if> 
                </span>
               </div>
         </form>
@@ -89,4 +91,4 @@
 </html>
 <%@ include file="commentS.jsp" %>
 
-<%-- </layoutTag:layout> --%>
+</layoutTag:layout>
