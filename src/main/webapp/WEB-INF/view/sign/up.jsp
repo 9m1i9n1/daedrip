@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout>
 
@@ -8,15 +9,13 @@
   </br>
 
   <h1 class="display-3" align="center">join membership</h1>
-
   <div class="col-md-5 order-md-1" style="margin:40px auto;">
-
-    <form class="order-md-3" id="signup" class="form-horizontal" action="/sign/up" method="post">
+    <form:form cssClass="order-md-3 form-horizontal" modelAttribute="accountVO" id="signup" action="/sign/up" method="post">
 
       <div class="mb-3">
         <label>ID</label>
-        <input type="email" class="form-control" name="userid" value="${accountVO.id}" placeholder="you@example.com" />
-        <p style="color:red;">${userIdError}</p>
+        <form:input cssClass="form-control" path="userid" value="${accountVO.userid}" placeholder="you@example.com" />
+        <form:errors path="userid" style="color:red;"/>
       </div>
 
       <br />
@@ -24,36 +23,28 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Password</label>
-          <input type="password" class="form-control" name="pw" />
-          <p style="color:red;">${pwError}</p>
+          <form:password cssClass="form-control" path="pw" />
+          <form:errors path="pw" style="color:red;"/>
         </div>
         <div class="col-md-6 mb-3">
           <label>Password Check</label>
-          <input type="password" class="form-control" name="pwCheck" />
-          <p style="color:red;">${pwCheckError}</p>
+          <input class="form-control" name="pwCheck" />
+          <p name="pwCheck" style="color:red;" ></p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
           <label>Nickname</label>
-          <input type="text" class="form-control" name="nickname" value="${accountVO.nickname}" />
+          <form:input cssClass="form-control" path="nickname" value="${accountVO.nickname}" />
           <p style="color:red;">${nameError}</p>
         </div>
         <div class="col-md-6 mb-3">
           <label>Email</label>
-          <input type="email" class="form-control" name="email" value="${accountVO.email }" />
+          <form:input type="email" cssClass="form-control" path="email" value="${accountVO.email }" />
           <p style="color:red;">${emailError}</p>
         </div>
       </div>
-
-      <!-- <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Email</label>
-        <input type="email" class="form-control" name="email" value="${accountVO.email }" />
-        <p style="color:red;">${emailError}</p>
-      </div>
-    </div> -->
 
 
       <label>Postcode</label>
@@ -76,7 +67,7 @@
         <div class="col-md-6 mb-3">
           <label>Address Detail</label>
           <input type="text" placeholder="Address Detail" name="extraaddress" class="form-control"
-            value="${accountVO.extraAddress}" />
+            value="${accountVO.extraaddress}" />
         </div>
       </div>
 
@@ -98,7 +89,7 @@
       </div>
 
   </div>
-  </form>
+  </form:form>
   </div>
 
 </layoutTag:layout>
