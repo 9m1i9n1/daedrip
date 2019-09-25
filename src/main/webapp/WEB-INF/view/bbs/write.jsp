@@ -51,8 +51,11 @@
       <div class="form-group">
         <div class="col-sm-12  text-center">
           <button href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0">
-            <span class="fas fa-pencil-alt mr-1"></span> 작성
+            <span class="fas fa-pencil-alt mr-1"></span> write
           </button>
+          <a href="javascript:history.back()" class="btn btn-primary btn-danger my-1 my-sm-0">
+            <span class="fas fa-undo mr-1"></span> back
+          </a>
         </div>
       </div> 
 

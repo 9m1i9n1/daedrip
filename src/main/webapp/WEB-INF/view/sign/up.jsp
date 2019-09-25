@@ -87,7 +87,7 @@
           <button href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0">
             <span class="fas fa-user-plus mr-1"></span> ok
           </button>
-          <a href="/" class="btn btn-primary btn-danger my-1 my-sm-0">
+          <a href="javascript:history.back()" class="btn btn-primary btn-danger my-1 my-sm-0">
             <span class="fas fa-undo mr-1"></span> back
           </a>
 

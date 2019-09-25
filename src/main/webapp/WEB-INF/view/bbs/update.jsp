@@ -50,8 +50,11 @@
         <div class="form-group">
           <div class="col-sm-12  text-center">
             <button  class="btn btn-primary btn-primary my-1 my-sm-0">
-              <span class="fas fa-edit mr-1"></span> 수정
+              <span class="fas fa-edit mr-1"></span> update
             </button>
+            <a href="javascript:history.back()" class="btn btn-primary btn-danger my-1 my-sm-0">
+              <span class="fas fa-undo mr-1"></span> back
+            </a>
           </div>
         </div> 
 

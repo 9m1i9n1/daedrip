@@ -11,7 +11,6 @@ $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시
     commentInsert(insertData); //Insert 함수호출(아래)
 });
 
-
 function commentInsert(insertData){
     $.ajax({
         url : '/comment/insert',
@@ -26,7 +25,6 @@ function commentInsert(insertData){
     });
 }
  
-
 //댓글 목록 
 function commentList(){
     console.log("들어오나?");
@@ -36,6 +34,7 @@ function commentList(){
         type : 'get',
         data : {'bbs_idx':bbs_idx},
         success : function(data){
+            
             $(".commentList").html(data);
         }
     });
@@ -83,5 +82,4 @@ function commentDelete(idx){
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
 });
-
 </script>

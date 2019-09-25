@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
+
 <layoutTag:layout>
 
 <!DOCTYPE html>
@@ -14,16 +15,69 @@
 <body>
 
 <jsp:include page="/WEB-INF/view/header.jsp" />
+
 <br/>
-<h1 class="display-3" align="center">Post Read</h1>
+<h1 class="display-4" align="center">Post Read</h1>
 
   <!-- <div class="container"> -->
         <!-- <div class="col-xs-12" style="margin: 15px auto;">
           <label style="font-size: 20px;"><span
             class="glyphicon glyphicon-list-alt"></span>글 읽기</label>
         </div> -->
+<div class="col-md-8 order-md-1" style="margin:40px auto;">
+    <div class="ht-tm-element jumbotron">
+      <h1 class="display-5"> ${read.title}</h1>
+      <h6><span class="fas fa-user mr-1"></span> ${read.nickname}</h6>
+      <h6><span class="fas fa-eye mr-1"></span>${read.readCount}</h6>
+      <h6><span class="fas fa-clock mr-1"></span><fmt:formatDate value="${read.regDate}"
+                  pattern="yy.MM.dd HH:mm" />
+      </h6>
+      <h6><span class="fas fa-history mr-1"></span><fmt:formatDate value="${read.modifyDate}"
+                  pattern="yy.MM.dd HH:mm" />
+      </h6>
+      <h6><span class="fas fa-file mr-1"></span> <a href="/bbs/fileDown/${file.bbs_idx}">${file.fileOriName}</a>
+      </h6>
+      <br/>
+      <h4>${read.content}</h4>
+      <!-- <hr class="my-4"> -->
+      <!-- <p>${read.content}</p> -->
+      <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+      <br/>
+      <!-- <p class="lead"> -->
+        <!-- <a class="btn btn-primary" href="#!" role="button">Learn more</a>
+        <a class="btn btn-primary" href="#!" role="button">Learn more</a> -->
 
-    <div class="col-md-5 order-md-1" style="margin:40px auto;">
+        <div class="row">
+          <c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
+            <div>
+              <a href="/bbs/update/${read.idx}" class="btn btn-primary">
+                <span class="fas fa-edit mr-1"></span> Edit
+              </a>
+            </div>
+            &nbsp;
+            <div>
+              <form action="/bbs/delete/${read.idx}" method="post">  
+                <input type="hidden" name="account_idx" value=${read.account_idx} />
+                <button class="btn btn-danger">
+                  <span class="fas fa-trash mr-1"></span> Delete
+                </button>   
+              </form>
+            </div>
+          </c:if>
+          &nbsp;
+          <div>
+            <a href="/bbs" class="btn btn-primary" onclick="location.href='/bbs'">
+              <span class="fas fa-bars mr-1"></span> List
+            </a>
+          </div>
+        </div>
+
+      <!-- </p> -->
+    </div>
+  </div>
+
+
+    <!-- <div class="col-md-5 order-md-1" style="margin:40px auto;">
       <div>
         <form class="order-md-3 form-horizontal" id="writeread" action="/writeProc" method="post" enctype="multipart/form-data">
           <dt>제목</dt>
@@ -55,7 +109,9 @@
                 <a href="/bbs/fileDown/${file.bbs_idx}">${file.fileOriName}</a>
               </dd>
           </form>
-      </div>
+      </div> -->
+
+      
     
     
 
@@ -112,8 +168,8 @@
     </c:if> --%> -->
 
 
-    <div role="group" style="float: right;">
-      <div class="row">
+    <!-- <div role="group" style="float: right;">
+     <div class="row">
           <c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
             <div>
               <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
@@ -136,15 +192,15 @@
             </a>
           </div>
       </div>
-    </div>
+    </div> -->
 
   <!--  댓글  -->
   <c:if test="${sessionScope.signVO != null}">
-    <div>
+    <div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
             <div class="input-group">
-               <input type="hidden" name="account_idx" value="${signVO.idx}"/>
+            <input type="hidden" name="account_idx" value="${signVO.idx}"/>
                <input type="hidden" name="bbs_idx" value="${read.idx}"/>
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요." required>
 
@@ -153,15 +209,17 @@
                </span>
             </div>
         </form>
-    </div>
+    <!-- </div> -->
   </c:if>
     
     <div class="container">
         <div class="commentList"></div>
     </div>
+    
 </div>
 </body>
 </html>
+
 <%@ include file="commentS.jsp" %>
 
 </layoutTag:layout>
