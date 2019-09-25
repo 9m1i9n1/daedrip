@@ -1,5 +1,8 @@
 package app.sign.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -55,10 +58,18 @@ public class SignController {
   }
 
   @PostMapping("/up")
-  public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult) throws Exception {
-    if (bindingResult.hasErrors()) {
+  public String upExcute(@Valid AccountVO accountVO, BindingResult bindingResult,
+      @ModelAttribute @RequestParam("pwCheck") String pwCheck, Model model, HttpServletResponse response)
+      throws Exception {
+
+    if (!accountVO.getPw().equals(pwCheck)) {
+      model.addAttribute("pwCheckError", "비밀번호 맞춰주세요");
+      return "/sign/up";
+    } else if (bindingResult.hasErrors()) {
       return "/sign/up";
     } else {
+      PrintWriter out = response.getWriter();
+      out.println("<script>alert('회원가입되었습니다');</script>");
       accountService.create(accountVO);
       return "redirect:/";
     }

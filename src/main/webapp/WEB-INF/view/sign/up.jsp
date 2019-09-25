@@ -30,7 +30,9 @@
         <div class="col-md-6 mb-3">
           <label>Password Check</label>
           <input type="password" class="form-control" name="pwCheck" required="required"/>
-          <p style="color:red;">${pwCheckError}</p>
+          <p style="color:red;">
+            ${pwCheckError}
+          </p>
         </div>
       </div>
 
@@ -73,10 +75,10 @@
       <div class="form-group">
         <div class="col-sm-12  text-center">
 
-          <button href="/sign/in" class="btn btn-primary btn-primary my-1 my-sm-0">
+          <button href="/sign/in" class="btn btn-primary my-1 my-sm-0">
             <span class="fas fa-user-plus mr-1"></span> ok
           </button>
-          <a href="javascript:history.back()" class="btn btn-primary btn-danger my-1 my-sm-0">
+          <a href="javascript:history.back()" class="btn btn-danger my-1 my-sm-0">
             <span class="fas fa-undo mr-1"></span> back
           </a>
 

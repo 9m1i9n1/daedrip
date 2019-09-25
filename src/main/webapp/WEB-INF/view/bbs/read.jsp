@@ -193,13 +193,44 @@
           </div>
       </div>
     </div> -->
+    
+<div class="col-md-8 order-md-1" style="margin:40px auto;">
+    <hr class="mb-3">
+    <h2><span class="fas fa-comments mr-1"></span> comment</h2> <br/>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-danger" type="button">Go!</button>
+      </div>
+    </div>
+</div>
+
+
+    <div class="col-md-8 order-md-1" style="margin:40px auto;">
+      <c:if test="${sessionScope.signVO != null}">
+        <div class="container">
+        <%-- <label for="content">comment</label> --%>
+        <h5>comment</h5>
+        <form name="commentInsertForm">
+            <div class="input-group">
+            <input type="hidden" name="account_idx" value="${signVO.idx}"/>
+               <input type="hidden" name="bbs_idx" value="${read.idx}"/>
+               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요." required>
+
+               <span class="input-group-btn">
+                    <button class="btn btn-sm btn-primary my-1 my-sm-0" type="button" name="commentInsertBtn">등록</button>
+               </span>
+            </div>
+        </form>
+      </c:if>
+    <div>
 
 
  
  </script>
 
   <!--  댓글  -->
-  <c:if test="${sessionScope.signVO != null}">
+  <%-- <c:if test="${sessionScope.signVO != null}">
     <div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm" onsubmit="return false;">
@@ -214,8 +245,7 @@
                </span>
             </div>
         </form>
-    <!-- </div> -->
-  </c:if>
+  </c:if> --%>
     
     <div class="container">
         <div class="commentList"></div>
