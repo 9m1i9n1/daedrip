@@ -23,10 +23,6 @@
 
   <jsp:include page="/WEB-INF/view/header.jsp" />
 
-  <!-- <div class="container">
-    <div class="col-xs-12" style="margin: 15px auto;">
-      <label style="font-size: 20px;"><span class="glyphicon glyphicon-list-alt"></span>게시글 목록</label>
-    </div> -->
   <br />
   <h1 class="display-3" align="center">Post List</h1>
   <br />
@@ -37,25 +33,19 @@
         <th>글 번호</th>
         <th>제목</th>
         <th>작성자</th>
-        <!-- <th>내용</th> -->
         <th>조회수</th>
         <th>등록일</th>
-        <!-- <th>수정일</th> -->
       </tr>
 
       <c:forEach var="p" items="${list}">
         <tr onclick="location.href='/bbs/read/${p.idx}'">
           <td align="center">${p.idx}</td>
           <td>${p.title}</td>
-          <td align="center">${p.account_idx}</td>
-          <!-- <td>${p.content}</td> -->
+          <td align="center">${p.nickname}</td>
           <td align="center">${p.readCount}</td>
           <td align="center">
             <fmt:formatDate value="${p.regDate}" pattern="yyyy.MM.dd HH:mm:ss" />
           </td>
-          <!-- <td>
-            <fmt:formatDate value="${p.modifyDate}" pattern="yyyy.MM.dd HH:mm:ss" />
-          </td> -->
         </tr>
       </c:forEach>
     </table>
@@ -65,13 +55,15 @@
   <div align="center">
     <ul class="pagination" style="justify-content: center;">
       <c:if test="${pageMakeVO.prev}">
-        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.startPage - 1}">
-            <<</a> </li> </c:if> <!-- <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
+        <li class="page-item"><a class="page-link" href="${path}?page=${pageMakeVO.startPage - 1}"><<</a></li>
+      </c:if>
+
+      <%-- <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
         <li class="page-item">
           <c:out value="${pageMakeVO.pageVO.page == idx ? '' : ''}" />
           <a class="page-link" href="${path}?page=${idx}">${idx}</a>
         </li>
-        </c:forEach> -->
+        </c:forEach> --> --%>
 
 
         <c:forEach begin="${pageMakeVO.startPage}" end="${pageMakeVO.endPage}" var="idx">
@@ -99,13 +91,16 @@
   <!-- <div align="center">
     <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
   </div> -->
-  <div align="center">
-    <a href="/bbs/write" class="btn btn-primary my-1 my-sm-0">
+  <%-- <div align="center">
+    <a href="/bbs/write" class="ry my-1 my-sm-btn btn-prima0">
       <span class="fas fa-pen-square mr-1"></span> write
     </a>
+  </div> --%>
+  <div align="center">
+    <c:if test="${sessionScope.signVO != null}">
+      <a href="/bbs/write" class="btn btn-primary">글쓰기</a>
+    </c:if>
   </div>
-  </div>
-
 </body>
 
 </html>

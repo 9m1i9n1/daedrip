@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
@@ -28,7 +29,7 @@
           <dd>${read.title}</dd>
 
           <dt>작성자</dt>
-          <dd>${read.account_idx}</dd>
+          <dd>${read.nickname}</dd>
 
           <dt>등록일</dt>
           <dd>
@@ -55,7 +56,7 @@
       </form>
     </div>
 
-    <div  role="group" style="float: right;">
+    <%-- <div  role="group" style="float: right;">
       <a href="/bbs/update/${read.idx}" class="btn btn-sm btn-primary my-1 my-sm-0">
         <span class="fas fa-edit mr-1"></span> Edit
       </a>
@@ -68,13 +69,25 @@
 
       <a href="/bbs" class="btn btn-sm btn-primary my-1 my-sm-0">
         <span class="fas fa-bars mr-1"></span> List
-      </a>
+      </a> --%>
+    <div class="btn-group btn-group-sm" role="group" style="float: right;">
+      <c:if test="${(sessionScope.signVO != null) && (sessionScope.signVO.idx == read.account_idx)}">
+        <button class="btn btn-primary" onclick="location.href='/bbs/update/${read.idx}'">수정</button>
+
+        <form action="/bbs/delete/${read.idx}" method="post">
+          <input type="hidden" name="account_idx" value=${read.account_idx} />
+          <button>삭제</button>
+        </form>
+        
+      </c:if> 
+      <button class="btn btn-primary" onclick="location.href='/bbs'">목록</button>
     </div>
 
   </div>
 
   <br/>
   <!--  댓글  -->
+  <c:if test="${sessionScope.signVO != null}">
     <div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
@@ -87,7 +100,8 @@
               </div>
         </form>
     </div>
-
+    </c:if>
+    
     <div class="container">
         <div class="commentList"></div>
     </div>
@@ -97,3 +111,4 @@
 <%@ include file="commentS.jsp" %>
 
 </layoutTag:layout>
+

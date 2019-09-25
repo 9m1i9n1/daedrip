@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import app.bbs.service.BbsService;
@@ -30,6 +33,7 @@ import app.bbs.vo.BbsVO;
 import app.bbs.vo.FileVO;
 import app.bbs.vo.PageMakeVO;
 import app.bbs.vo.PageVO;
+import app.sign.vo.SignVO;
 
 @Controller
 @RequestMapping("/bbs")
@@ -45,6 +49,7 @@ public class BbsController {
   // 커맨드 객체로 pageVO 를 매개변수로 넣어줘, 넘어오는 page와 perPageNum정보를 받음
   private String listPage(PageVO pageVO, Model model) throws Exception {
 
+    // 페이지 설정
     PageMakeVO pageMakeVO = new PageMakeVO();
     pageMakeVO.setPageVO(pageVO);
 
@@ -61,7 +66,10 @@ public class BbsController {
   private String read(@PathVariable int idx, Model model) throws Exception {
 
     bbsService.updateCountService(idx);
+
+    // bbsVO
     model.addAttribute("read", bbsService.readService(idx));
+    // fileVO
     model.addAttribute("file", bbsService.downloadService(idx));
 
     return "/bbs/read";
@@ -69,6 +77,7 @@ public class BbsController {
 
   @GetMapping("/write")
   private String write() {
+
     return "/bbs/write";
   }
 
@@ -82,6 +91,7 @@ public class BbsController {
     bbs.setAccount_idx(Integer.parseInt(request.getParameter("account_idx")));
     bbs.setContent(request.getParameter("content"));
 
+    // 파일이 없을 때
     if (files.isEmpty()) {
       bbsService.writeService(bbs);
     } else {
@@ -93,12 +103,14 @@ public class BbsController {
       do {
         destinationFileName = RandomStringUtils.randomAlphabetic(32) + "." + fileNameExtension;
         destinationFile = new File(uploadFileDir + destinationFileName);
+
+        // 다중 파일 업로드 위해 exists() 사용.
       } while (destinationFile.exists());
 
       destinationFile.getParentFile().mkdirs();
       files.transferTo(destinationFile);
 
-      // bbs insert
+      // 글 쓰기
       bbsService.writeService(bbs);
 
       file.setBbs_idx(bbs.getIdx());
@@ -106,7 +118,7 @@ public class BbsController {
       file.setFileOriName(fileName);
       file.setFileUrl(uploadFileDir);
 
-      // file insert
+      // 파일 업로드
       bbsService.uploadService(file);
     }
 
@@ -115,7 +127,9 @@ public class BbsController {
 
   @GetMapping("/update/{idx}")
   private String update(@PathVariable int idx, Model model) throws Exception {
+
     model.addAttribute("read", bbsService.readService(idx));
+
     return "/bbs/update";
   }
 
@@ -132,11 +146,17 @@ public class BbsController {
     return "redirect:/bbs/read/" + request.getParameter("idx");
   }
 
-  // TODO:: 이 부분 GET 말고 다른 방향 있는지 확인.
-  @GetMapping("/delete/{idx}")
-  private String delete(@PathVariable int idx) throws Exception {
+  @PostMapping("/delete/{idx}")
+  private String delete(@PathVariable int idx, @SessionAttribute("signVO") SignVO signVO, HttpServletRequest request)
+      throws Exception {
 
-    bbsService.deleteService(idx);
+    // TODO:: 본인이 아닐경우 service 실행되지 않고 페이지 돌아가는것으로 처리했으나...
+    // TODO:: 이 부분에서 alert 줘야함. 시간남으면처리하겠음.
+    if ((signVO.getIdx()).equals(request.getParameter("account_idx"))) {
+      System.out.println(signVO.getIdx() + " " + request.getParameter("account_idx"));
+
+      bbsService.deleteService(idx);
+    }
 
     return "redirect:/bbs/index";
   }

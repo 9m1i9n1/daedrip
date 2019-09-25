@@ -3,22 +3,24 @@
  
 <script>
 var bbs_idx = '${read.idx}'; //게시글 번호
- 
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
     var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
     commentInsert(insertData); //Insert 함수호출(아래)
 });
  
- 
- 
+
 //댓글 목록 
 function commentList(){
+    console.log("들어오나?");
+    
     $.ajax({
         url : '/comment/list',
         type : 'get',
         data : {'bbs_idx':bbs_idx},
         success : function(data){
             var a =''; 
+
+            console.log('#data: ' + data);
 
             $.each(data, function(key, value){ 
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
@@ -28,7 +30,7 @@ function commentList(){
                 a += '<div class="commentContent'+value.idx+'"> <p> 내용 : '+value.content +'</p>';
                 a += '</div></div>';
             });
-            
+
             $(".commentList").html(a);
         }
     });
@@ -87,15 +89,10 @@ function commentDelete(idx){
     });
 }
  
- 
- 
- 
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
 });
- 
- 
- 
+
 </script>
 
 
