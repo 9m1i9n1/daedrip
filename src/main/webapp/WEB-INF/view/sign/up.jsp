@@ -16,8 +16,9 @@
 
       <div class="mb-3">
         <label>ID</label>
-        <form:input type="email" class="form-control" path="userid" placeholder="you@example.com" required/>
-        <p style="color:red;">${userIdError}</p>
+        <form:input class="form-control" path="userid" placeholder="you@example.com" required/>
+        <form:errors path="userid" style="color:red;" />
+        <p style="color:red;"></p>
       </div>
       <br />
 
@@ -76,7 +77,7 @@
         <div class="col-md-6 mb-3">
           <label>Address Detail</label>
           <input type="text" placeholder="Address Detail" name="extraaddress" class="form-control"
-            value="${accountVO.extraAddress}" required/>
+            value="${accountVO.extraaddress}" required/>
         </div>
       </div>
 
