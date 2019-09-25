@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -152,8 +150,6 @@ public class BbsController {
   private String delete(@PathVariable int idx, @SessionAttribute("signVO") SignVO signVO, HttpServletRequest request)
       throws Exception {
 
-    // TODO:: 본인이 아닐경우 service 실행되지 않고 페이지 돌아가는것으로 처리했으나...
-    // TODO:: 이 부분에서 alert 줘야함. 시간남으면처리하겠음.
     if ((signVO.getIdx()).equals(request.getParameter("account_idx"))) {
       System.out.println(signVO.getIdx() + " " + request.getParameter("account_idx"));
 
