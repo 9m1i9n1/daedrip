@@ -17,13 +17,19 @@
   <jsp:include page="/WEB-INF/view/header.jsp"/>
 
   <div style="height:150px"></div>
-  <div class="jumbotron bg-primary text-center text-white mb-0 radius-0">
-    <div class="container">
+    <div class="jumbotron bg-primary text-center text-white mb-0 radius-0">
+    <%-- <div class="container bg-primary"> --%>
 
-      <h1 class="display-1 text-white text-handwriting text-uppercase">DaeDrip.net</h1>
-      <br /><br />
-      <h1 class="display-2 text-success text-uppercase title-margin-fix">Welcome</h1>
+        <h1 class="display-1 text-white text-handwriting text-uppercase">DaeDrip.net</h1>
+        <br /><br />
+        <h1 class="display-2 text-success text-uppercase title-margin-fix">Welcome</h1>
 
     </div>
   </div>
+<div style="height:180px"></div>
+  <div class="text-white bg-primary" style="position:static; bottom:0; width:100%; height:70px;" align="center">
+      <h6>Copyright (c) DaeDrip.net All Right Reserved.</h6>
+      <h6>Blog is powered by DaeDrip / Designed by DaeDrip</h6>
+  </div>
+
 </body>

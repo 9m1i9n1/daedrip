@@ -17,7 +17,7 @@
 
     <div class="col-sm-12  text-center">
       <button type='button' onclick="location.href='/'" class="btn btn-primary my-1 my-sm-0">
-        <span class="fas fa-search mr-1"></span> Search
+        <span class="fas fa-search mr-1"></span> search
       </button>
       <button type='button' onclick="location.href='/sign/in'" class="btn btn-danger my-1 my-sm-0">
         <span class="fas fa-undo mr-1"></span> back
