@@ -6,11 +6,13 @@
 var bbs_idx = '${read.idx}'; //게시글 번호
  
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-    if($('[name=commentInsertForm]').find("[name='content']").val()!=''){
+    //console.log($('[name=commentInsertForm]').find("[name='content']").val().length > 2);
+    
+    if(($('[name=commentInsertForm]').find("[name='content']").val()=='') || ($('[name=commentInsertForm]').find("[name='content']").val().length >20)){
+         alert(" 1자 ~ 20자 댓글입력");
+    }else{
         var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
         commentInsert(insertData); //Insert 함수호출(아래)
-    }else{
-        alert("댓글입력좀 부탁해");
     }
 });
 
@@ -30,8 +32,7 @@ function commentInsert(insertData){
  
 //댓글 목록 
 function commentList(){
-    console.log("들어오나?");
-    
+ 
     $.ajax({
         url : '/comment/list',
         type : 'get',
