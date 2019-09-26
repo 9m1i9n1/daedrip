@@ -40,7 +40,7 @@
         </button>
 
         <button type='button' onclick="location.href='/sign/up'" class="btn btn-danger my-1 my-sm-0">
-          <span class="fas fa-user-plus mr-1"></span> SingUp
+          <span class="fas fa-user-plus mr-1"></span> SignUp
         </button>
       </div>
       <h1></h1>

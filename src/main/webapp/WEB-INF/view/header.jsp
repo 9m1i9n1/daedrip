@@ -27,7 +27,7 @@
   }
 </style>
 
-<body>
+<body style="text-center">
   <div class="bg-primary text-white navbar-dark">
     <div class="container">
       <nav class="navbar px-0 navbar-expand-lg navbar-dark">
@@ -39,7 +39,7 @@
           <div class="navbar-nav">
             <a class="asize" style="margin: 0%" href="/"><img id="logo" src="/image/logo.png" width="80%" /></a>
 
-            <a href="/bbs" class="pl-md-0 p-3 text-white">Board-1</a>
+            <a href="/bbs" class="pl-md-0 p-3 text-white">Board</a>
             <!-- <a href="app.html" class="p-3 text-decoration-none text-white">App example</a>
             <a href="form.html" class="p-3 text-decoration-none text-white">Form example</a> -->
           </div>

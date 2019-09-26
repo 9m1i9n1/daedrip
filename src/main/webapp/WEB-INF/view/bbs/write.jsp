@@ -45,7 +45,7 @@
 
       <div class="form-group mb-3">
         <label for ="subject">파일 업로드</label>
-        <input class="form-control" type="file" name="files"/>
+        <input class="form-control " type="file" name="files"/>
       </div>
 
       <div class="form-group">

@@ -49,7 +49,7 @@ function commentUpdate(idx, content){
   
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+idx+'" value="'+content+'"/>';
-    a += '<button class="btn btn-default" type="button" onclick="commentUpdateProc('+idx+');"><span class="fas fa-edit mr-1"></span> Edit</button> </span>';
+    a += '<button class="btn btn-default" type="button" onclick="commentUpdateProc('+idx+');"><span class="fas fa-check-circle mr-1"></span> ok</button>';
     a += '</div>';
     
     $('.commentContent'+idx).html(a);

@@ -17,9 +17,9 @@
       </div>
       <div class="col-md-6 mb-3" align="right">
         <c:if test="${sessionScope.signVO.idx == commentVO.account_idx}">
-          <button class="btn btn-sm btn-primary my-1 my-sm-0" onclick="commentUpdate('${commentVO.idx}','${commentVO.content}');">
+          <button class="btn btn-sm btn-default my-1 my-sm-0" onclick="commentUpdate('${commentVO.idx}','${commentVO.content}');">
           <span class="fas fa-edit mr-1"></span> Edit </button>
-          <button class="btn btn-sm btn-danger my-1 my-sm-0" onclick="commentDelete('${commentVO.idx}');">
+          <button class="btn btn-sm btn-default my-1 my-sm-0" onclick="commentDelete('${commentVO.idx}');">
           <span class="fas fa-trash mr-1"></span> Delete </button>
         </c:if>
       </div>
