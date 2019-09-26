@@ -27,7 +27,7 @@
   }
 </style>
 
-<body>
+<body style="text-center">
   <div class="bg-primary text-white navbar-dark">
     <div class="container">
       <nav class="navbar px-0 navbar-expand-lg navbar-dark">
