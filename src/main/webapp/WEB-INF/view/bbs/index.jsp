@@ -50,7 +50,7 @@
       </c:forEach>
     </table>
   </div>
-
+  <br/>
   <%-- Page 처리 --%>
   <div align="center">
     <ul class="pagination" style="justify-content: center;">
@@ -101,7 +101,7 @@
   <div align="center">
     <c:if test="${sessionScope.signVO != null}">
       <a href="/bbs/write" class="btn btn-primary my-1 my-sm-0"">
-        <span class="fas fa-edit mr-1"></span> write
+        <span class="fas fa-pencil-alt mr-1"></span> write
       </a>
     </c:if>
   </div>
