@@ -5,7 +5,7 @@
 
 <jsp:include page="/WEB-INF/view/header.jsp" />
 <br />
-<h1 class="display-3" align="center">ID/Password Find</h1>
+<h1 class="display-3" align="center">ID/PW Find</h1>
 
 <div class="col-md-3 order-md-1" style="margin:40px auto;">
   <fieldset>
