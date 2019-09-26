@@ -62,22 +62,37 @@ public class SignController {
   }
 
   @PostMapping("/in")
-  public String inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
-      @RequestParam(value = "check", required = false) String check, HttpSession session,
-      HttpServletResponse response) {
+  public void inExcute(@RequestParam("userid") String userId, @RequestParam("pw") String pw,
+      @RequestParam(value = "check", required = false) String check, HttpSession session, HttpServletResponse response)
+      throws Exception {
 
     SignVO signVO = signService.in(userId, pw);
+    PrintWriter out = response.getWriter();
     if (signVO != null) {
       if (check != null && check.equals("on")) {
-        response.addCookie(new Cookie("signVO.idx", signVO.getIdx()));
-        response.addCookie(new Cookie("signVO.userId", signVO.getUserId()));
-        response.addCookie(new Cookie("signVO.nickname", signVO.getNickname()));
-        response.addCookie(new Cookie("signVO.email", signVO.getEmail()));
-        response.addCookie(new Cookie("signVO.pw", signVO.getPw()));
+        Cookie cookieIdx = new Cookie("signVO.idx", signVO.getIdx());
+        Cookie cookieUserId = new Cookie("signVO.userId", signVO.getUserId());
+        Cookie cookieNickname = new Cookie("signVO.nickname", signVO.getNickname());
+        Cookie cookieEmail = new Cookie("signVO.email", signVO.getEmail());
+        Cookie cookiePw = new Cookie("signVO.pw", signVO.getPw());
+
+        cookieIdx.setMaxAge(60 * 60 * 24 * 30);
+        cookieUserId.setMaxAge(60 * 60 * 24 * 30);
+        cookieNickname.setMaxAge(60 * 60 * 24 * 30);
+        cookieEmail.setMaxAge(60 * 60 * 24 * 30);
+        cookiePw.setMaxAge(60 * 60 * 24 * 30);
+
+        response.addCookie(cookieIdx);
+        response.addCookie(cookieUserId);
+        response.addCookie(cookieNickname);
+        response.addCookie(cookieEmail);
+        response.addCookie(cookiePw);
       }
       session.setAttribute("signVO", signVO);
+      out.println("<script>alert('로그인 되었습니다.'); location.href='/';</script>");
+      return;
     }
-    return "redirect:/";
+    out.print("<script>alert('비밀번호 혹은 아이디가 틀립니다.              '); history.back();</script>");
   }
 
   @PostMapping("/up")

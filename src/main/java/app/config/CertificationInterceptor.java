@@ -21,6 +21,34 @@ public class CertificationInterceptor implements HandlerInterceptor {
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    boolean isSign = request.getSession().getAttribute("signVO") == null;
+    if (isSign) {
+      Cookie[] cookies = request.getCookies();
+      SignVO signVO = new SignVO();
+      for (Cookie cookie : cookies) {
+        if (cookie.getName().startsWith("signVO.")) {
+          switch (cookie.getName().substring("signVO".length())) {
+          case "idx":
+            signVO.setIdx(cookie.getValue());
+            break;
+          case "userId":
+            signVO.setUserId(cookie.getValue());
+            break;
+          case "nickname":
+            signVO.setNickname(cookie.getValue());
+            break;
+          case "email":
+            signVO.setEmail(cookie.getValue());
+            break;
+          case "pw":
+            signVO.setPw(cookie.getValue());
+            break;
+          default:
+            break;
+          }
+        }
+      }
+    }
     return true;
   }
 
