@@ -23,4 +23,8 @@ public class SignService {
   public SignVO up() {
     return null;
   }
+
+  public SignVO find(String email) {
+    return signMapper.find(email);
+  }
 }
