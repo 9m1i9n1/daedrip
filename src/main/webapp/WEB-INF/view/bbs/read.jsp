@@ -74,7 +74,7 @@
             <input type="hidden" name="account_idx" value="${signVO.idx}"/>
             <input type="hidden" name="bbs_idx" value="${read.idx}"/>
 
-            <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2" required="required"/>
+            <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요. (20자 이내)" aria-label="Recipient's username" aria-describedby="basic-addon2" required="required"/>
             
 
             <div class="input-group-append">
