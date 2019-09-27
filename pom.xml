@@ -121,6 +121,7 @@
                             </configuration>
                     </plugin>
                     <!-- Docker maven plugin -->
+			
 		</plugins>
 	</build>
 </project>
