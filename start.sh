@@ -1,4 +1,4 @@
-appName="pilot"
+appName="p1"
 word="1"
 echo "$word"
 word=`docker ps -a -q --no-trunc --filter name=^/"$appName"$`
@@ -18,4 +18,4 @@ then
     /usr/bin/docker rm "$word"
 fi
 /home/centos/apache-maven-3.6.2/bin mvn clean package -P spring-boot docker:build
-/usr/bin/docker run -p 8761:8761 -d --name "$appName" "$appName":latest
+/usr/bin/docker run -p 18080:18080 -d --name "$appName" "$appName":latest
