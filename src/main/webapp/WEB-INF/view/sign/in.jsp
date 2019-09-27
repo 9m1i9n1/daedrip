@@ -23,7 +23,7 @@
       <div class="custom-control custom-checkbox">
         <ul style="list-style:none; text-align:center; margin: 0 auto;">
           <li style="float:left;">
-            <input type="checkbox" name="check" value="false" class="custom-control-input" id="customCheck1" />
+            <input type="checkbox" name="check" class="custom-control-input" id="customCheck1" />
             <label class="custom-control-label" for="customCheck1">아이디 기억</label>
           </li>
           <li>

@@ -7,4 +7,8 @@
     where userid=#{userId} and pw = #{pw}
   </select>
 
+  <select id="find" resultType="signVO" parameterType="String">
+    select * from account
+    where email = #{email}
+  </select>
 </mapper>
