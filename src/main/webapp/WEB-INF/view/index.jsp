@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-  <title>메인 페이지</title>
+  <title>DaeDrip 대드립</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -15,14 +15,23 @@
 <body class="bg-primary">
 
   <jsp:include page="/WEB-INF/view/header.jsp"/>
-
-  <div style="height:170px"></div>
+<%-- 
+  <div align="center">
+    <img src="/image/dh.png" width="10%" height="20%" />
+  </div> --%>
     <div class="jumbotron bg-primary text-center text-white mb-0 radius-0">
     <%-- <div class="container bg-primary"> --%>
+        <img src="/image/dh.png" width="10%" height="20%" />    
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/image/hwan.png" width="9%" height="20%" />  
 
         <h1 class="display-1 text-white text-handwriting text-uppercase">DaeDrip.net</h1>
-        <br /><br />
+        <%-- <br/> --%>
         <h1 class="display-2 text-success text-uppercase title-margin-fix">Welcome</h1>
+        
+        <img src="/image/min.png" width="10%" height="20%" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/image/hun.png" width="10%" height="20%" />
 
     </div>
   </div>
