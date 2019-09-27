@@ -127,7 +127,7 @@ public class SignController {
     if (signVO != null) {
       String signEmail = signVO.getEmail();
       MailHandler mail = new MailHandler(sender);
-      mail.setFrom("0000000", "123");
+      mail.setFrom("ragnarokdust@gmail.com", "ragnarokdust@gmail.com");
       mail.setTo(signEmail);
       mail.setSubject("페이지 회원가입 인증 메일");
       mail.setText(new StringBuffer().append("<h1>회원가입 인증메일입니다.</h1>")
