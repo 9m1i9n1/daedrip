@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BIT 9월 2조 :: 글 읽기</title>
+    <title>DaeDrip :: Post Read</title>
   </head>
 
 
