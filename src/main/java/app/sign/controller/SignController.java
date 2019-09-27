@@ -124,18 +124,16 @@ public class SignController {
     response.setContentType("text/html; charset=utf-8");
     PrintWriter out = response.getWriter();
     SignVO signVO = signService.find(email);
+
     if (signVO != null) {
       String signEmail = signVO.getEmail();
+      System.out.println(sender);
       MailHandler mail = new MailHandler(sender);
-      mail.setFrom("0000000", "123");
+      mail.setFrom("0000000", "min");
       mail.setTo(signEmail);
       mail.setSubject("페이지 회원가입 인증 메일");
-      mail.setText(new StringBuffer().append("<h1>회원가입 인증메일입니다.</h1>")
-        .append("<p>밑의 링크를 클릭하면 메일이 인증 됩니다.</p>")
-        .append("<p>userId"+signVO.getUserId()+"</p>")
-        .append("<p>pw : "+signVO.getPw()+"</p>")
-        .toString()
-      );
+      mail.setText(new StringBuffer().append("<h1>회원가입 인증메일입니다.</h1>").append("<p>밑의 링크를 클릭하면 메일이 인증 됩니다.</p>")
+          .append("<p>userId" + signVO.getUserId() + "</p>").append("<p>pw : " + signVO.getPw() + "</p>").toString());
       mail.send();
       out.println("<script>alert('아이디와 비밀번호를 보냈습니다.'); location.href='/sign/in'</script>");
     } else {
