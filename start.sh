@@ -1,4 +1,4 @@
-appName="pilot"
+appName="p1"
 word="1"
 echo "$word"
 word=`docker ps -a -q --no-trunc --filter name=^/"$appName"$`
