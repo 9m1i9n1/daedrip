@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8-jdk-slim
 VOLUME /tmp
 ADD p1-0.0.1-SNAPSHOT.war pilot.war
 RUN bash -c 'touch /pilot.war'
