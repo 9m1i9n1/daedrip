@@ -19,7 +19,7 @@ then
     /usr/bin/docker rm "$word"
 fi
 
-/usr/bin/docker push "$appName":latest
+/usr/bin/docker push "$appName"
 /usr/bin/docker run -p 28080:28080 -d --name "$containerName" "$appName":latest
 
 echo "완료------------------------------------------------"
