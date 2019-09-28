@@ -85,11 +85,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
-			<!-- Docker maven plugin -->
-                    <plugin>
+			<plugin>
                             <groupId>com.spotify</groupId>
                             <artifactId>docker-maven-plugin</artifactId>
-                            <version>1.0.0</version>
+			    <version>1.2.0</version>
                             <executions>
                                 <execution>
                                     <id>build-image</id>
@@ -100,12 +99,12 @@
                                 </execution>
                             </executions>
                             <configuration>
-                                <!-- 미러 이름 -->
-                                <imageName>${project.artifactId}</imageName>
-                                <!-- 미러 라벨-->
+                                <!-- image 이름 -->
+                                <imageName>9m1i9n1/${project.artifactId}</imageName>
+                                <!-- image 라벨-->
                                 <imageTags>
                                 <!--여러 태그 지정 가능, 타임스탬프 유형을 만들어 버전을 구분하는 데 사용할 것을 권장-->
-                                <imageTag>${maven.build.timestamp}</imageTag>
+                                	<imageTag>${maven.build.timestamp}</imageTag>
                                 </imageTags>
                                 <baseImage>java</baseImage>
                                 <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
