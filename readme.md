@@ -1,4 +1,4 @@
-#SPRING PROJECT aa
+#SPRING PROJECT
 
 ## 1. PAGE구조
 
