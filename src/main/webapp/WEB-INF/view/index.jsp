@@ -29,9 +29,9 @@
         <%-- <br/> --%>
         <h1 class="display-2 text-success text-uppercase title-margin-fix">Welcome</h1>
         
-        <img src="/image/min.png" width="10%" height="20%" />
+        <img src="/image/min.png" width="10%" height="21%" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img src="/image/hun.png" width="10%" height="20%" />
+        <img src="/image/hun.png" width="10%" height="21%" />
 
     </div>
   </div>
