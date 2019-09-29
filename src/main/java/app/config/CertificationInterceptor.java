@@ -3,6 +3,7 @@ package app.config;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,12 +22,12 @@ public class CertificationInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     boolean isSign = request.getSession().getAttribute("signVO") == null;
-    if (isSign) {
+    if (isSign && request.getCookies() != null) {
       Cookie[] cookies = request.getCookies();
       SignVO signVO = new SignVO();
       for (Cookie cookie : cookies) {
         if (cookie.getName().startsWith("signVO.")) {
-          switch (cookie.getName().substring("signVO".length())) {
+          switch (cookie.getName().substring("signVO.".length())) {
           case "idx":
             signVO.setIdx(cookie.getValue());
             break;
@@ -46,6 +47,12 @@ public class CertificationInterceptor implements HandlerInterceptor {
             break;
           }
         }
+      }
+
+      if (signVO.getIdx() != null && signVO.getUserId() != null && signVO.getNickname() != null
+          && signVO.getPw() != null) {
+        HttpSession session = request.getSession();
+        session.setAttribute("signVO", signVO);
       }
     }
     return true;

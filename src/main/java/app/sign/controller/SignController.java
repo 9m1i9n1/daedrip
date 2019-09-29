@@ -49,16 +49,18 @@ public class SignController {
   }
 
   @GetMapping("/out")
-  public String out(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+  public void out(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
     for (Cookie cookie : request.getCookies()) {
       if (cookie.getName().startsWith("signVO")) {
         cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
       }
     }
     session.invalidate();
+    response.setContentType("text/html; charset=utf-8");
     PrintWriter out = response.getWriter();
-    out.println("<script>alert('로그아웃 되었습니다.');</script>");
-    return "redirect:/";
+    out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
   }
 
   @GetMapping("/find")
@@ -88,6 +90,12 @@ public class SignController {
         cookieEmail.setMaxAge(60 * 60 * 24 * 30);
         cookiePw.setMaxAge(60 * 60 * 24 * 30);
 
+        cookieIdx.setPath("/");
+        cookieUserId.setPath("/");
+        cookieNickname.setPath("/");
+        cookieEmail.setPath("/");
+        cookiePw.setPath("/");
+
         response.addCookie(cookieIdx);
         response.addCookie(cookieUserId);
         response.addCookie(cookieNickname);
@@ -96,9 +104,9 @@ public class SignController {
       }
       session.setAttribute("signVO", signVO);
       out.println("<script>alert('로그인 되었습니다.'); location.href='/';</script>");
-      return;
     }
-    out.print("<script>alert('비밀번호 혹은 아이디가 틀립니다.              '); history.back();</script>");
+    out.print("<script>alert('비밀번호 혹은 아이디가 틀립니다. '); history.back();</script>");
+
   }
 
   @PostMapping("/up")
@@ -131,9 +139,9 @@ public class SignController {
       MailHandler mail = new MailHandler(sender);
       mail.setFrom("0000000", "min");
       mail.setTo(signEmail);
-      mail.setSubject("페이지 회원가입 인증 메일");
-      mail.setText(new StringBuffer().append("<h1>회원가입 인증메일입니다.</h1>").append("<p>밑의 링크를 클릭하면 메일이 인증 됩니다.</p>")
-          .append("<p>userId" + signVO.getUserId() + "</p>").append("<p>pw : " + signVO.getPw() + "</p>").toString());
+      mail.setSubject("페이지 회원 인증 메일");
+      mail.setText(new StringBuffer().append("<h1>회원.</h1>").append("<p>userId" + signVO.getUserId() + "</p>")
+          .append("<p>pw : " + signVO.getPw() + "</p>").toString());
       mail.send();
       out.println("<script>alert('아이디와 비밀번호를 보냈습니다.'); location.href='/sign/in'</script>");
     } else {
